@@ -1,0 +1,306 @@
+fileFormatVersion: 2
+guid: b329f02d4f5daff478380eb14d67d50b
+timeCreated: 1498518174
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Box017
+    100002: Cylinder024
+    100004: Dummy002
+    100006: Dummy003
+    100008: Dummy004
+    100010: Dummy005
+    100012: Dummy008
+    100014: Dummy009
+    100016: Dummy010
+    100018: Dummy011
+    100020: Dummy013
+    100022: Dummy014
+    100024: Dummy015
+    100026: Dummy016
+    100028: Dummy018
+    100030: Dummy019
+    100032: Dummy020
+    100034: Dummy021
+    100036: Gun_barrel_END
+    100038: gun_sash001
+    100040: gun_sash002
+    100042: gun_sash003
+    100044: gun_sash004
+    100046: gun_sash_target
+    100048: IK Chain001
+    100050: IK Chain002
+    100052: IK Chain003
+    100054: IK Chain004
+    100056: //RootNode
+    100058: LGT_headBone
+    100060: Object010
+    100062: Object014
+    100064: Object019
+    100066: Object020
+    100068: Object021
+    100070: Object022
+    100072: Object023
+    100074: Object024
+    100076: Object025
+    100078: Object026
+    100080: Object027
+    100082: Object028
+    100084: Object029
+    400000: Box017
+    400002: Cylinder024
+    400004: Dummy002
+    400006: Dummy003
+    400008: Dummy004
+    400010: Dummy005
+    400012: Dummy008
+    400014: Dummy009
+    400016: Dummy010
+    400018: Dummy011
+    400020: Dummy013
+    400022: Dummy014
+    400024: Dummy015
+    400026: Dummy016
+    400028: Dummy018
+    400030: Dummy019
+    400032: Dummy020
+    400034: Dummy021
+    400036: Gun_barrel_END
+    400038: gun_sash001
+    400040: gun_sash002
+    400042: gun_sash003
+    400044: gun_sash004
+    400046: gun_sash_target
+    400048: IK Chain001
+    400050: IK Chain002
+    400052: IK Chain003
+    400054: IK Chain004
+    400056: //RootNode
+    400058: LGT_headBone
+    400060: Object010
+    400062: Object014
+    400064: Object019
+    400066: Object020
+    400068: Object021
+    400070: Object022
+    400072: Object023
+    400074: Object024
+    400076: Object025
+    400078: Object026
+    400080: Object027
+    400082: Object028
+    400084: Object029
+    2300000: Box017
+    2300002: Cylinder024
+    2300004: Object010
+    2300006: Object014
+    2300008: Object019
+    2300010: Object020
+    2300012: Object021
+    2300014: Object022
+    2300016: Object023
+    2300018: Object024
+    2300020: Object025
+    2300022: Object026
+    2300024: Object027
+    2300026: Object028
+    2300028: Object029
+    3300000: Box017
+    3300002: Cylinder024
+    3300004: Object010
+    3300006: Object014
+    3300008: Object019
+    3300010: Object020
+    3300012: Object021
+    3300014: Object022
+    3300016: Object023
+    3300018: Object024
+    3300020: Object025
+    3300022: Object026
+    3300024: Object027
+    3300026: Object028
+    3300028: Object029
+    4300000: Object010
+    4300002: Object029
+    4300004: Object028
+    4300006: Object027
+    4300008: Object026
+    4300010: Object025
+    4300012: Object024
+    4300014: Object023
+    4300016: Object022
+    4300018: Object021
+    4300020: Object014
+    4300022: Object019
+    4300024: Object020
+    4300026: Cylinder024
+    4300028: Box017
+    7400000: LGT_LightningGun_Fire
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: LGT_LightningGun_Fire
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 75
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: LGT_headBone
+        weight: 1
+      - path: LGT_headBone/Box017
+        weight: 1
+      - path: LGT_headBone/Gun_barrel_END
+        weight: 1
+      - path: LGT_headBone/Gun_barrel_END/Cylinder024
+        weight: 1
+      - path: LGT_headBone/gun_sash001
+        weight: 1
+      - path: LGT_headBone/gun_sash001/Dummy002
+        weight: 1
+      - path: LGT_headBone/gun_sash001/Dummy002/Dummy003
+        weight: 1
+      - path: LGT_headBone/gun_sash001/Dummy002/Dummy003/Dummy004
+        weight: 1
+      - path: LGT_headBone/gun_sash001/Dummy002/Dummy003/Object020
+        weight: 1
+      - path: LGT_headBone/gun_sash001/Dummy002/Object019
+        weight: 1
+      - path: LGT_headBone/gun_sash001/Object014
+        weight: 1
+      - path: LGT_headBone/gun_sash002
+        weight: 1
+      - path: LGT_headBone/gun_sash002/Dummy008
+        weight: 1
+      - path: LGT_headBone/gun_sash002/Dummy008/Dummy009
+        weight: 1
+      - path: LGT_headBone/gun_sash002/Dummy008/Dummy009/Dummy010
+        weight: 1
+      - path: LGT_headBone/gun_sash002/Dummy008/Dummy009/Object021
+        weight: 1
+      - path: LGT_headBone/gun_sash002/Dummy008/Object022
+        weight: 1
+      - path: LGT_headBone/gun_sash002/Object023
+        weight: 1
+      - path: LGT_headBone/gun_sash003
+        weight: 1
+      - path: LGT_headBone/gun_sash003/Dummy013
+        weight: 1
+      - path: LGT_headBone/gun_sash003/Dummy013/Dummy014
+        weight: 1
+      - path: LGT_headBone/gun_sash003/Dummy013/Dummy014/Dummy015
+        weight: 1
+      - path: LGT_headBone/gun_sash003/Dummy013/Dummy014/Object024
+        weight: 1
+      - path: LGT_headBone/gun_sash003/Dummy013/Object025
+        weight: 1
+      - path: LGT_headBone/gun_sash003/Object026
+        weight: 1
+      - path: LGT_headBone/gun_sash004
+        weight: 1
+      - path: LGT_headBone/gun_sash004/Dummy018
+        weight: 1
+      - path: LGT_headBone/gun_sash004/Dummy018/Dummy019
+        weight: 1
+      - path: LGT_headBone/gun_sash004/Dummy018/Dummy019/Dummy020
+        weight: 1
+      - path: LGT_headBone/gun_sash004/Dummy018/Dummy019/Object027
+        weight: 1
+      - path: LGT_headBone/gun_sash004/Dummy018/Object028
+        weight: 1
+      - path: LGT_headBone/gun_sash004/Object029
+        weight: 1
+      - path: LGT_headBone/Object010
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: LGT_headBone
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

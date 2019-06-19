@@ -1,0 +1,222 @@
+fileFormatVersion: 2
+guid: ae7344feb45e80749a089f57ad8ac704
+timeCreated: 1528534408
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: HeadBone
+    100002: //RootNode
+    100004: RLV_base
+    100006: RLV_baseArmor
+    100008: RLV_baseBone
+    100010: RLV_cylinder055
+    100012: RLV_cylinder056
+    100014: RLV_Object001
+    100016: RLV_Object002
+    100018: RLV_Object003
+    100020: RLV_Object004
+    100022: RLV_Object004 1
+    100024: RLV_Object005
+    100026: RLV_Object006
+    100028: RLV_Object007
+    100030: RLV_Object008
+    100032: RLV_Object009
+    100034: RLV_Object010
+    100036: RLV_Object011
+    100038: RLV_Object012
+    100040: RLV_Object013
+    100042: RLV_Object014
+    100044: RLV_polymsh1
+    100046: RLV_WheelJontL1
+    100048: RLV_WheelJontL1_1
+    100050: RLV_WheelJontL2
+    100052: RLV_WheelJontL2_1
+    100054: RLV_WheelJontL3
+    100056: RLV_WheelJontL3_1
+    100058: RLV_WheelJontLR_1
+    100060: RLV_WheelJontR1
+    100062: RLV_WheelJontR2
+    100064: RLV_WheelJontR2_1
+    100066: RLV_WheelJontR3
+    100068: RLV_WheelJontR3_1
+    100070: RLV_WheelTernL1
+    100072: RLV_WheelTernL2
+    100074: RLV_WheelTernL3
+    100076: RLV_WheelTernR1
+    100078: RLV_WheelTernR2
+    100080: RLV_WheelTernR3
+    100082: root
+    400000: HeadBone
+    400002: //RootNode
+    400004: RLV_base
+    400006: RLV_baseArmor
+    400008: RLV_baseBone
+    400010: RLV_cylinder055
+    400012: RLV_cylinder056
+    400014: RLV_Object001
+    400016: RLV_Object002
+    400018: RLV_Object003
+    400020: RLV_Object004
+    400022: RLV_Object004 1
+    400024: RLV_Object005
+    400026: RLV_Object006
+    400028: RLV_Object007
+    400030: RLV_Object008
+    400032: RLV_Object009
+    400034: RLV_Object010
+    400036: RLV_Object011
+    400038: RLV_Object012
+    400040: RLV_Object013
+    400042: RLV_Object014
+    400044: RLV_polymsh1
+    400046: RLV_WheelJontL1
+    400048: RLV_WheelJontL1_1
+    400050: RLV_WheelJontL2
+    400052: RLV_WheelJontL2_1
+    400054: RLV_WheelJontL3
+    400056: RLV_WheelJontL3_1
+    400058: RLV_WheelJontLR_1
+    400060: RLV_WheelJontR1
+    400062: RLV_WheelJontR2
+    400064: RLV_WheelJontR2_1
+    400066: RLV_WheelJontR3
+    400068: RLV_WheelJontR3_1
+    400070: RLV_WheelTernL1
+    400072: RLV_WheelTernL2
+    400074: RLV_WheelTernL3
+    400076: RLV_WheelTernR1
+    400078: RLV_WheelTernR2
+    400080: RLV_WheelTernR3
+    400082: root
+    2300000: RLV_base
+    2300002: RLV_baseArmor
+    2300004: RLV_cylinder055
+    2300006: RLV_cylinder056
+    2300008: RLV_Object001
+    2300010: RLV_Object002
+    2300012: RLV_Object003
+    2300014: RLV_Object004
+    2300016: RLV_Object004 1
+    2300018: RLV_Object005
+    2300020: RLV_Object006
+    2300022: RLV_Object007
+    2300024: RLV_Object008
+    2300026: RLV_Object009
+    2300028: RLV_Object010
+    2300030: RLV_Object011
+    2300032: RLV_Object012
+    2300034: RLV_Object013
+    2300036: RLV_Object014
+    2300038: RLV_polymsh1
+    3300000: RLV_base
+    3300002: RLV_baseArmor
+    3300004: RLV_cylinder055
+    3300006: RLV_cylinder056
+    3300008: RLV_Object001
+    3300010: RLV_Object002
+    3300012: RLV_Object003
+    3300014: RLV_Object004
+    3300016: RLV_Object004 1
+    3300018: RLV_Object005
+    3300020: RLV_Object006
+    3300022: RLV_Object007
+    3300024: RLV_Object008
+    3300026: RLV_Object009
+    3300028: RLV_Object010
+    3300030: RLV_Object011
+    3300032: RLV_Object012
+    3300034: RLV_Object013
+    3300036: RLV_Object014
+    3300038: RLV_polymsh1
+    4300000: RLV_base
+    4300002: RLV_baseArmor
+    4300004: RLV_polymsh1
+    4300006: RLV_Object001
+    4300008: RLV_Object006
+    4300010: RLV_Object002
+    4300012: RLV_Object007
+    4300014: RLV_Object011
+    4300016: RLV_Object004
+    4300018: RLV_Object009
+    4300020: RLV_Object014
+    4300022: RLV_Object003
+    4300024: RLV_Object008
+    4300026: RLV_Object012
+    4300028: RLV_cylinder056
+    4300030: RLV_Object004
+    4300032: RLV_cylinder055
+    4300034: RLV_Object005
+    4300036: RLV_Object010
+    4300038: RLV_Object013
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1.1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

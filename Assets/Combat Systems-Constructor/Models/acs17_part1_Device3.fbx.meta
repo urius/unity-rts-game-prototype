@@ -1,0 +1,171 @@
+fileFormatVersion: 2
+guid: 07af95eaeba85f64ba9049f125d84b57
+timeCreated: 1495316482
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: animGear1
+    100004: Box087
+    100006: Box088
+    100008: Box097
+    100010: Cylinder068
+    100012: Cylinder129
+    100014: Cylinder132
+    100016: Object001
+    100018: rotor
+    400000: //RootNode
+    400002: animGear1
+    400004: Box087
+    400006: Box088
+    400008: Box097
+    400010: Cylinder068
+    400012: Cylinder129
+    400014: Cylinder132
+    400016: Object001
+    400018: rotor
+    2300000: Box087
+    2300002: Box088
+    2300004: Box097
+    2300006: Cylinder068
+    2300008: Cylinder129
+    2300010: Cylinder132
+    2300012: Object001
+    2300014: rotor
+    3300000: Box087
+    3300002: Box088
+    3300004: Box097
+    3300006: Cylinder068
+    3300008: Cylinder129
+    3300010: Cylinder132
+    3300012: Object001
+    3300014: rotor
+    4300000: Box087
+    4300002: Box088
+    4300004: Box097
+    4300006: Cylinder068
+    4300008: Cylinder129
+    4300010: Cylinder132
+    4300012: Object001
+    4300014: rotor
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 8
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: animGear1
+        weight: 1
+      - path: animGear1/rotor
+        weight: 1
+      - path: Box087
+        weight: 1
+      - path: Box088
+        weight: 1
+      - path: Box097
+        weight: 1
+      - path: Cylinder068
+        weight: 1
+      - path: Cylinder129
+        weight: 1
+      - path: Cylinder132
+        weight: 1
+      - path: Object001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
