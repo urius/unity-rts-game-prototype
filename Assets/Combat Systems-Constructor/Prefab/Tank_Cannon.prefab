@@ -9,17 +9,18 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4143857580379300}
+  - component: {fileID: 4505405576231088080}
   - component: {fileID: 95861066949347596}
   - component: {fileID: 176333192}
   - component: {fileID: 6755992837364404302}
   - component: {fileID: 364926469946901690}
   - component: {fileID: 176333189}
-  - component: {fileID: 176333191}
   - component: {fileID: 1471444339520886783}
   - component: {fileID: 6799360756262636710}
   - component: {fileID: 7889401197170997438}
   - component: {fileID: 6818003226478688670}
   - component: {fileID: 772181830897325135}
+  - component: {fileID: 8828888872701342854}
   m_Layer: 0
   m_Name: Tank_Cannon
   m_TagString: Unit
@@ -42,6 +43,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4505405576231088080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003504808538462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 8828888872701342854}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}
 --- !u!95 &95861066949347596
 Animator:
   serializedVersion: 3
@@ -118,18 +137,6 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b9b6f1c58e48486b9b8b46476d28f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &176333191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003504808538462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39b9c2cdfaeaa4ef2bb2c441647f192f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1471444339520886783
@@ -211,6 +218,18 @@ MonoBehaviour:
   isSelected: 0
   selection: {fileID: 558593620445992139}
   selectionArea: {fileID: 6818003226478688670}
+--- !u!114 &8828888872701342854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003504808538462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed3291cd5d2df44a4894272a480b834b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1099529810087280
 GameObject:
   m_ObjectHideFlags: 0

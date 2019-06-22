@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class UnitAvatar : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class UnitAvatar : MonoBehaviour
     private TurretController _turretController;
     private StripeBar _hpBar;
     private UnityEngine.Object _explosionPrefab;
+
+    [Inject]
+    private IMoveAnimationAdapter _animationAdapter;
     void Awake()
     {
         AllUnits.Add(this);
@@ -67,7 +71,7 @@ public class UnitAvatar : MonoBehaviour
                 behaviour.enabled = false;
             }
 
-            GetComponent<IMoveAnimationAdapter>().Dead();
+            _animationAdapter.Dead();
 
             StartCoroutine(WaitAndDestroy());
         }

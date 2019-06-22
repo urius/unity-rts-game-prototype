@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Zenject;
 
 public class NavMeshMoveDecorator : MonoBehaviour
 {
@@ -12,13 +13,14 @@ public class NavMeshMoveDecorator : MonoBehaviour
     [SerializeField]
     private float _stopAnimDistance= 2f;
     private NavMeshAgent _agent;
+
+    [Inject]
     private IMoveAnimationAdapter _moveAnimationAdapter;
     private Quaternion _lastRotation;
     private Vector3 _lastPosition;
     void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
-        _moveAnimationAdapter = GetComponent<IMoveAnimationAdapter>();
     }
 
     void Start()

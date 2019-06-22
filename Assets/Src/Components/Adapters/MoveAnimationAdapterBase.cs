@@ -1,16 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public abstract class MoveAnimationAdapterBase : MonoBehaviour, IMoveAnimationAdapter
+public abstract class MoveAnimationAdapterBase : IMoveAnimationAdapter
 {
     protected MoveStates currentState = MoveStates.Undefined;
-    protected Animator animator;
 
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
+    [Inject]
+    protected Animator animator;
 
     public void ChangeMoveState(MoveStates moveState)
     {

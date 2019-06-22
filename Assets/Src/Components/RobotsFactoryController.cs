@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using Zenject;
 
 [Serializable]
 public class BuildableUnit
@@ -32,6 +33,9 @@ public class RobotsFactoryController : MonoBehaviour
     private readonly List<BuildingUnit> _buildQueue = new List<BuildingUnit>();
     private UnitAvatar _unitAvatar;
     private GameData _gameData;
+
+    [Inject] 
+    private DiContainer _container;
 
     void Awake()
     {
@@ -92,7 +96,7 @@ public class RobotsFactoryController : MonoBehaviour
             {
                 _buildQueue.RemoveAt(0);
 
-                var unit = Instantiate(buildingUnit.unit.prefab, _spawnPoint.transform) as GameObject;
+                var unit = _container.InstantiatePrefab(buildingUnit.unit.prefab, _spawnPoint.transform) as GameObject;
                 var unitAvatar = unit.GetComponent<UnitAvatar>();
                 unitAvatar.team = _unitAvatar.team;
                 unitAvatar.cost = buildingUnit.unit.cost;

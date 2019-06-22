@@ -1209,17 +1209,18 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4347872983944570}
+  - component: {fileID: 179895614946516063}
   - component: {fileID: 95506970698132046}
   - component: {fileID: 666630647}
   - component: {fileID: 585117631813325038}
   - component: {fileID: 666630646}
-  - component: {fileID: 666630650}
   - component: {fileID: 7372470443329703769}
   - component: {fileID: 8488632152193238384}
   - component: {fileID: 6409257813864779590}
   - component: {fileID: 666630651}
   - component: {fileID: 666630652}
   - component: {fileID: 1853221632684854779}
+  - component: {fileID: 5835295510179776430}
   m_Layer: 0
   m_Name: ACS17_LaserGun
   m_TagString: Untagged
@@ -1242,6 +1243,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &179895614946516063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193977977764896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 5835295510179776430}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}
 --- !u!95 &95506970698132046
 Animator:
   serializedVersion: 3
@@ -1314,18 +1333,6 @@ MonoBehaviour:
     delayBeforeFirstShotSeconds: 0.2
     damagePerShot: 10
   detectRadius: 50
---- !u!114 &666630650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193977977764896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58378345e057246318d9990e96ce14cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7372470443329703769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1338,8 +1345,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fdae4e94a62e442ca32710ecfb64460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movingAngle: 30
-  stopAnimSpeed: 0.03
+  _movingAngle: 30
+  _stopAnimSpeed: 0.03
+  _stopAnimDistance: 2
 --- !u!195 &8488632152193238384
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1417,6 +1425,18 @@ MonoBehaviour:
   isSelected: 0
   selection: {fileID: 8956601932622178421}
   selectionArea: {fileID: 6409257813864779590}
+--- !u!114 &5835295510179776430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193977977764896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e0084e20e02492c9a5a4eefe18cf54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1196869556722886
 GameObject:
   m_ObjectHideFlags: 0
