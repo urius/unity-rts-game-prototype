@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
+using Zenject;
 
 [Serializable]
 public class WeaponData
@@ -16,15 +15,15 @@ public class WeaponData
 //[RequireComponent(typeof(UnitAvatar))]
 public class TurretController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [Inject]
+    private DiContainer _container;
+    [Inject]
+    private UnitModel _model;
     public Transform turret;
     public WeaponData[] weapons;
     public int detectRadius = 50;
 
-    [NonSerialized]
-    public Transform target;
-
-    private UnitAvatar _unitAvatar;
+    private UnitModel _target => _model.turretTarget;
     private Quaternion _lastRotation;
 
     private float turnSpeed => 100 * Time.deltaTime;
@@ -43,7 +42,6 @@ public class TurretController : MonoBehaviour
         _bulletTracePrefab = Resources.Load("BulletTrace");
         _sparksPrefab = Resources.Load("Sparks");
 
-        _unitAvatar = GetComponent<UnitAvatar>();
         _turretAnimationAdapter = GetComponent<ITurretAnimationAdapter>();
     }
 
@@ -58,13 +56,13 @@ public class TurretController : MonoBehaviour
 
     public bool isLastShotHitTarget => _isLastShotHitTarget;
 
-    public bool canAttack => target != null && (Vector3.Distance(target.position, transform.position) <= detectRadius);
+    public bool canAttack => _target != null && (Vector3.Distance(_target.transform.position, transform.position) <= detectRadius);
 
     void LateUpdate()
     {
-        if (target != null)
+        if (_target != null)
         {
-            var targetLookAtPoint = target.position;
+            var targetLookAtPoint = _target.transform.position;
             targetLookAtPoint.y = turret.transform.position.y;
 
             var targetRotation = Quaternion.LookRotation(targetLookAtPoint - turret.transform.position, turret.transform.up);
@@ -92,10 +90,10 @@ public class TurretController : MonoBehaviour
                     yield return new WaitForSeconds(weapon.delayBeforeFirstShotSeconds);
                 }
 
-                var targetLookAtPoint = target.position;
+                var targetLookAtPoint = _target.transform.position;
                 targetLookAtPoint.y = turret.transform.position.y;
 
-                var fireDirection = target.position - turret.transform.position;
+                var fireDirection = _target.transform.position - turret.transform.position;
                 var projectedfireDirection = Vector3.ProjectOnPlane(fireDirection, gameObject.transform.up);
 
                 if (Quaternion.Angle(turret.rotation, Quaternion.LookRotation(projectedfireDirection, turret.transform.up)) <= 0.5f)
@@ -117,9 +115,9 @@ public class TurretController : MonoBehaviour
 
     private async void Fire(WeaponData weapon, Vector3 fireDirection)
     {
-        var bullet = Instantiate(weapon.BulletPrefab) as GameObject;
+        var bullet = _container.InstantiatePrefab(weapon.BulletPrefab);
         var bulletFireComponent = bullet.GetComponent<IBulletInitializer>();
 
-        _isLastShotHitTarget = await bulletFireComponent.Initialize(_unitAvatar, target.GetComponent<UnitAvatar>(), weapon.firePoint.position, fireDirection, weapon.damagePerShot) != null;
+        _isLastShotHitTarget = await bulletFireComponent.Initialize(_model, _model.turretTarget, weapon.firePoint.position, fireDirection, weapon.damagePerShot) != null;
     }
 }

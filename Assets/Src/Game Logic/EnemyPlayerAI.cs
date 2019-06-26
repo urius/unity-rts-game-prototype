@@ -2,21 +2,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class EnemyPlayerAI : MonoBehaviour
 {
+    [Inject]
+    private GameData gameData;
+    [Inject]
+    private UnitsConfig _unitsConfig;
+
     [SerializeField]
     private int team;
-
-    [SerializeField]
-    private GameData gameData;
     private RobotsFactoryController _robotsFactory;
-
-    private PlayerData _playerData;
+    private IPlayerData _playerData;
     void Start()
     {
         var robotsFactories = FindObjectsOfType<RobotsFactoryController>();
-        _robotsFactory = Array.Find(robotsFactories, f => f.GetComponent<UnitAvatar>().team == team);
+        _robotsFactory = Array.Find(robotsFactories, f => f.GetComponent<UnitFacade>().UnitModel.teamId == team);
 
         _playerData = gameData.GetPlayerData(team);
 
@@ -33,19 +35,19 @@ public class EnemyPlayerAI : MonoBehaviour
                 continue;
             }
 
-            var availableUnitIndices = new List<int>();
-            for (var i = 0; i < _robotsFactory.BuildableUnits.Length; i++)
+            var canBeBuiltUnits = new List<MobileUnitType>();
+            for (var i = 0; i < _unitsConfig.mobileUnits.Length; i++)
             {
-                if (_robotsFactory.BuildableUnits[i].cost <= _playerData.money)
+                if (_unitsConfig.mobileUnits[i].cost <= _playerData.money)
                 {
-                    availableUnitIndices.Add(i);
+                    canBeBuiltUnits.Add(_unitsConfig.mobileUnits[i].typeId);
                 }
             }
 
-            if (availableUnitIndices.Count > 0)
+            if (canBeBuiltUnits.Count > 0)
             {
-                var orderUnitIndex = availableUnitIndices[UnityEngine.Random.Range(0, availableUnitIndices.Count)];
-                _robotsFactory.AddToBuildQueue(orderUnitIndex);
+                var orderUnitType = canBeBuiltUnits[UnityEngine.Random.Range(0, canBeBuiltUnits.Count)];
+                _robotsFactory.AddToBuildQueue(orderUnitType);
             }
 
             yield return new WaitForSeconds(1f);

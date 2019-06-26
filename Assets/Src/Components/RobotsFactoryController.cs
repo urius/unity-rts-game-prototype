@@ -1,79 +1,56 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Events;
 using Zenject;
-
-[Serializable]
-public class BuildableUnit
-{
-    public int cost = 1;
-    public float buildTimeSeconds = 1;
-    public UnityEngine.Object prefab;
-}
 
 public class RobotsFactoryController : MonoBehaviour
 {
     private class BuildingUnit
     {
-        public int index;
         public float timeToBuildLeft;
-        public BuildableUnit unit;
+        public MobileUnitConfig unit;
     }
 
-    public Action<int, float> UpdateBuildInfo = delegate { };
 
-    [SerializeField]
-    private BuildableUnit[] _buildableUnits;
+    [Inject]
+    private DiContainer _container;
+    [Inject]
+    private GameData _gameData;
+    [Inject]
+    private UnitModel _model;
+
+    [Inject]
+    private UnitsConfig _unitsConfig;
+    [Inject]
+    private UnitFactory _unitFactory;
+
+
+    public Action<MobileUnitType, float> UpdateBuildInfo = delegate { };
+
     [SerializeField]
     private Transform _spawnPoint;
-
     private readonly List<BuildingUnit> _buildQueue = new List<BuildingUnit>();
-    private UnitAvatar _unitAvatar;
-    private GameData _gameData;
-
-    [Inject] 
-    private DiContainer _container;
-
-    void Awake()
-    {
-        _unitAvatar = GetComponent<UnitAvatar>();
-
-        _gameData = FindObjectOfType<GameData>();
-    }
-    void Start()
-    {
-    }
-
-    public BuildableUnit[] BuildableUnits => _buildableUnits;
 
     public bool isBuilding => _buildQueue.Count > 0;
 
-    public void AddToBuildQueue(int unitIndex)
+    public void AddToBuildQueue(MobileUnitType unitType)
     {
-        var buildungUnit = _buildableUnits[unitIndex];
-        if (_gameData.TryChangePlayerMoney(_unitAvatar.team, -buildungUnit.cost))
+        var buildingUnitConfig = _unitsConfig.GetConfigByType(unitType);
+        if (_gameData.TryChangePlayerMoney(_model.teamId, -buildingUnitConfig.cost))
         {
             _buildQueue.Add(new BuildingUnit()
             {
-                index = unitIndex,
-                timeToBuildLeft = buildungUnit.buildTimeSeconds,
-                unit = buildungUnit
+                timeToBuildLeft = buildingUnitConfig.buildTimeSeconds,
+                unit = buildingUnitConfig
             });
         }
     }
 
-    public int GetUnitsCountInBuildQueue(int index)
+    public int GetUnitsCountInBuildQueue(MobileUnitType type)
     {
-        var targetUnit = _buildableUnits[index];
-        return _buildQueue.FindAll(u => u.unit == targetUnit).Count;
-    }
-
-    public BuildableUnit GetUnitInfo(int index)
-    {
-        return _buildableUnits[index];
+        var targetUnit = _unitsConfig.GetConfigByType(type);
+        return _buildQueue.FindAll(u => u.unit.typeId == targetUnit.typeId).Count;
     }
 
 
@@ -82,35 +59,26 @@ public class RobotsFactoryController : MonoBehaviour
     {
         if (isBuilding)
         {
-            var buildingUnit = _buildQueue[0];
-            buildingUnit.timeToBuildLeft -= Time.deltaTime;
-            if (buildingUnit.timeToBuildLeft <= 0)
+            var buildingUnitData = _buildQueue[0];
+            buildingUnitData.timeToBuildLeft -= Time.deltaTime;
+            if (buildingUnitData.timeToBuildLeft <= 0)
             {
-                buildingUnit.timeToBuildLeft = 0;
+                buildingUnitData.timeToBuildLeft = 0;
             }
 
-            var buildProgress = (buildingUnit.unit.buildTimeSeconds - buildingUnit.timeToBuildLeft) / buildingUnit.unit.buildTimeSeconds;
-
+            var buildProgress = (buildingUnitData.unit.buildTimeSeconds - buildingUnitData.timeToBuildLeft) / buildingUnitData.unit.buildTimeSeconds;
 
             if (buildProgress >= 1)
             {
                 _buildQueue.RemoveAt(0);
 
-                var unit = _container.InstantiatePrefab(buildingUnit.unit.prefab, _spawnPoint.transform) as GameObject;
-                var unitAvatar = unit.GetComponent<UnitAvatar>();
-                unitAvatar.team = _unitAvatar.team;
-                unitAvatar.cost = buildingUnit.unit.cost;
-                if (_gameData.userTeam == _unitAvatar.team)
-                {
-                    unitAvatar.GetComponent<NavMeshMoveToMouse>().enabled = true;
-                    unitAvatar.GetComponent<Selectable>().enabled = true;
-                }
+                var unit = _unitFactory.Create(buildingUnitData.unit.typeId, _model.teamId, _spawnPoint.transform);
 
                 var spawnTargetPoint = _spawnPoint.transform.position + _spawnPoint.transform.position - transform.position;
                 unit.GetComponent<NavMeshAgent>().SetDestination(spawnTargetPoint);
             }
 
-            UpdateBuildInfo(buildingUnit.index, buildProgress);
+            UpdateBuildInfo(buildingUnitData.unit.typeId, buildProgress);
         }
     }
 }

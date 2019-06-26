@@ -13,11 +13,11 @@ public class ImmediateBulletInitializer : BulletInitializerBase
 
     private UnityEngine.Object _sparksPrefab;
 
-    private UnitAvatar target;
+    private UnitModel target;
     private Vector3 from;
     private Vector3 direction;
     private int damage;
-    private TaskCompletionSource<UnitAvatar> _hitTaskCompletionSource;
+    private TaskCompletionSource<UnitModel> _hitTaskCompletionSource;
 
     void Awake()
     {
@@ -33,15 +33,15 @@ public class ImmediateBulletInitializer : BulletInitializerBase
     {
         if (Physics.Raycast(from, direction, out var hit))
         {
-            var unit = hit.transform.gameObject.GetComponent<UnitAvatar>();
+            var unit = hit.transform.gameObject.GetComponent<UnitFacade>();
             var hitPoint = hit.point;
             if (unit != null)
             {
                 hitPoint = unit.gameObject.GetComponent<Collider>().bounds.center;
-                unit.DoDamage(damage);
-                if (unit == target)
+                unit.UnitModel.DoDamage(damage);
+                if (unit.UnitModel == target)
                 {
-                    _hitTaskCompletionSource.TrySetResult(unit);
+                    _hitTaskCompletionSource.TrySetResult(unit.UnitModel);
                 }
             }
 
@@ -67,14 +67,14 @@ public class ImmediateBulletInitializer : BulletInitializerBase
         }
     }
 
-    protected override Task<UnitAvatar> InitializeInternal(UnitAvatar striker, UnitAvatar target, Vector3 from, Vector3 direction, int damage)
+    protected override Task<UnitModel> InitializeInternal(UnitModel striker, UnitModel target, Vector3 from, Vector3 direction, int damage)
     {
         this.target = target;
         this.from = from;
         this.direction = direction;
         this.damage = damage;
 
-        _hitTaskCompletionSource = new TaskCompletionSource<UnitAvatar>();
+        _hitTaskCompletionSource = new TaskCompletionSource<UnitModel>();
         return _hitTaskCompletionSource.Task;
     }
 

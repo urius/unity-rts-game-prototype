@@ -6249,8 +6249,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4971284345159034}
   - component: {fileID: 2612721482459645800}
+  - component: {fileID: -7369348977559964107}
   - component: {fileID: 95569318056694170}
-  - component: {fileID: 488238351}
   - component: {fileID: 488238354}
   - component: {fileID: 1715973309513367351}
   - component: {fileID: 4348491406904607451}
@@ -6306,6 +6306,18 @@ MonoBehaviour:
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
+--- !u!114 &-7369348977559964107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960260352046228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f84df4aee34ad4b1e89fb5efb7f93f0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &95569318056694170
 Animator:
   serializedVersion: 3
@@ -6325,20 +6337,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &488238351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1960260352046228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2695184e1b2024cffba3db352063467a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 3
-  _hp: 400
 --- !u!65 &488238354
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6364,13 +6362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732bc1642ccbe49108f48863ddeae477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buildableUnits:
-  - cost: 800
-    buildTimeSeconds: 8
-    prefab: {fileID: 1193977977764896, guid: ae6399343baf09d4fac34e3510838605, type: 3}
-  - cost: 500
-    buildTimeSeconds: 5
-    prefab: {fileID: 1003504808538462, guid: 23037ac2bd4049c4f98e969f83a64c42, type: 3}
   _spawnPoint: {fileID: 3950688455274749227}
 --- !u!208 &4348491406904607451
 NavMeshObstacle:
@@ -6400,6 +6391,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb71c76584df48beb224a84729a09b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team: 0
+  _explosionPrefab: {fileID: 0}
+  _hp: 0
+  _cost: 0
 --- !u!1 &1963806009085186
 GameObject:
   m_ObjectHideFlags: 0
@@ -6851,6 +6846,21 @@ PrefabInstance:
     - target: {fileID: 5260606131621278195, guid: 756b5c8943ab5479ea68c4accaba10a4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761658248280804448, guid: 756b5c8943ab5479ea68c4accaba10a4,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.055440914
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761658248280804448, guid: 756b5c8943ab5479ea68c4accaba10a4,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.6603774
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761658248280804448, guid: 756b5c8943ab5479ea68c4accaba10a4,
+        type: 3}
+      propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

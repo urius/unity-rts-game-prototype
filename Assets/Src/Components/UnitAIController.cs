@@ -3,20 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Zenject;
 
 public class UnitAIController : MonoBehaviour
 {
-    private UnitAvatar _unitAvatar;
+    [Inject]
+    private UnitsCollectionProvider _unitsCollectionProvider;
+    [Inject]
+    private UnitModel _model;
+
     private NavMeshMoveToMouse _moveToMouseScript;
-    private TurretController _turretController;
     private NavMeshMoveDecorator _moveToPositionScript;
 
 
     void Awake()
     {
-        _unitAvatar = GetComponent<UnitAvatar>();
         _moveToMouseScript = GetComponent<NavMeshMoveToMouse>();
-        _turretController = GetComponent<TurretController>();
         _moveToPositionScript = GetComponent<NavMeshMoveDecorator>();
     }
     void Start()
@@ -40,8 +42,8 @@ public class UnitAIController : MonoBehaviour
                 yield return new WaitForFixedUpdate();
             }
 
-            var attackTarget = GetClosestAttackableEnemy(UnitAvatar.AllUnits);
-            _turretController.target = attackTarget?.transform;
+            var attackTarget = GetClosestAttackableEnemy(_unitsCollectionProvider.units);
+            _model.turretTarget = attackTarget;
 
             yield return new WaitForSeconds(1f);
         }
@@ -58,7 +60,7 @@ public class UnitAIController : MonoBehaviour
 
             if (needToProcessMoving)
             {
-                var target = GetClosestEnemy(UnitAvatar.AllUnits);
+                var target = GetClosestEnemy(_unitsCollectionProvider.units);
 
                 ProcessMovingTo(target);
             }
@@ -67,18 +69,18 @@ public class UnitAIController : MonoBehaviour
         }
     }
 
-    private void ProcessMovingTo(UnitAvatar target)
+    private void ProcessMovingTo(UnitModel target)
     {
         var moveToPosition = transform.position;
         if (target != null && target.hp > 0)
         {
             var distanceToClosest = Vector3.Distance(target.transform.position, transform.position);
 
-            if (target.detectRadius < _unitAvatar.detectRadius)
+            if (target.detectRadius < _model.detectRadius)
             {
                 //go to the middle between detect radiuses
                 var vectorFromEnemyToMe = transform.position - target.transform.position;
-                var distanceToCome = target.detectRadius + (_unitAvatar.detectRadius - target.detectRadius) / 2;
+                var distanceToCome = target.detectRadius + (_model.detectRadius - target.detectRadius) / 2;
 
                 moveToPosition = target.transform.position + Vector3.ClampMagnitude(vectorFromEnemyToMe, distanceToCome);
 
@@ -88,14 +90,14 @@ public class UnitAIController : MonoBehaviour
             {
                 //need to come closer
                 var vectorFromEnemyToMe = transform.position - target.transform.position;
-                var distanceToCome = _unitAvatar.detectRadius / 2;
+                var distanceToCome = _model.detectRadius / 2;
                 moveToPosition = target.transform.position + Vector3.ClampMagnitude(vectorFromEnemyToMe, distanceToCome);
 
                 //Debug.DrawLine(transform.position, moveToPosition, Color.red, 1f);
             }
 
-            var team = _unitAvatar.team;
-            var enemiesExceptTarget = UnitAvatar.AllUnits.FindAll(u => (u.team != team) && (u != target));
+            var team = _model.teamId;
+            var enemiesExceptTarget = _unitsCollectionProvider.units.FindAll(u => (u.teamId != team) && (u != target));
             var extraEnemiesTargetedToMe = GetUnitsTargetedMe(enemiesExceptTarget);
             if (extraEnemiesTargetedToMe.Count > 0)
             {
@@ -112,7 +114,7 @@ public class UnitAIController : MonoBehaviour
                 }
             }
 
-            if (Vector3.Distance(moveToPosition, transform.position) < 2 && _unitAvatar.isAttacikng && _unitAvatar.isLastShotHitTarget == false)
+            if (Vector3.Distance(moveToPosition, transform.position) < 2 && _model.isAttacikng && _model.isLastShotHitTarget == false)
             {
                 var vectorFromEnemyToMe = transform.position - target.transform.position;
                 var rotatedVectorFromEnemyToMe = Quaternion.Euler(0, 90, 0) * vectorFromEnemyToMe;
@@ -123,12 +125,12 @@ public class UnitAIController : MonoBehaviour
         }
     }
 
-    private UnitAvatar GetClosestEnemy(IEnumerable<UnitAvatar> unitsToIterate)
+    private UnitModel GetClosestEnemy(IEnumerable<UnitModel> unitsToIterate)
     {
-        UnitAvatar closest = null;
+        UnitModel closest = null;
         foreach (var unit in unitsToIterate)
         {
-            if (_unitAvatar.team != unit.team)
+            if (_model.teamId != unit.teamId)
             {
                 var distance = Vector3.Distance(transform.position, unit.transform.position);
                 if (closest == null || distance < Vector3.Distance(transform.position, closest.transform.position))
@@ -140,15 +142,15 @@ public class UnitAIController : MonoBehaviour
         return closest;
     }
 
-    private UnitAvatar GetClosestAttackableEnemy(IEnumerable<UnitAvatar> unitsToIterate)
+    private UnitModel GetClosestAttackableEnemy(IEnumerable<UnitModel> unitsToIterate)
     {
-        UnitAvatar closest = null;
+        UnitModel closest = null;
         foreach (var unit in unitsToIterate)
         {
-            if (_unitAvatar.team != unit.team)
+            if (_model.teamId != unit.teamId)
             {
                 var distance = Vector3.Distance(transform.position, unit.transform.position);
-                if (distance <= _unitAvatar.detectRadius)
+                if (distance <= _model.detectRadius)
                 {
                     if (closest == null || distance < Vector3.Distance(transform.position, closest.transform.position))
                     {
@@ -160,12 +162,12 @@ public class UnitAIController : MonoBehaviour
         return closest;
     }
 
-    private IList<UnitAvatar> GetUnitsTargetedMe(IEnumerable<UnitAvatar> unitsToIterate)
+    private IList<UnitModel> GetUnitsTargetedMe(IEnumerable<UnitModel> unitsToIterate)
     {
-        var result = new List<UnitAvatar>();
+        var result = new List<UnitModel>();
         foreach (var unit in unitsToIterate)
         {
-            if (unit.turretTarget == gameObject)
+            if (unit.turretTarget == _model)
             {
                 result.Add(unit);
             }

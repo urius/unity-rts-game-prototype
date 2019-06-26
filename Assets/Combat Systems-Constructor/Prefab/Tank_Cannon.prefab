@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4143857580379300}
   - component: {fileID: 4505405576231088080}
+  - component: {fileID: 8828888872701342854}
+  - component: {fileID: 2494363441629484416}
   - component: {fileID: 95861066949347596}
-  - component: {fileID: 176333192}
   - component: {fileID: 6755992837364404302}
   - component: {fileID: 364926469946901690}
   - component: {fileID: 176333189}
@@ -20,7 +21,6 @@ GameObject:
   - component: {fileID: 7889401197170997438}
   - component: {fileID: 6818003226478688670}
   - component: {fileID: 772181830897325135}
-  - component: {fileID: 8828888872701342854}
   m_Layer: 0
   m_Name: Tank_Cannon
   m_TagString: Unit
@@ -61,6 +61,33 @@ MonoBehaviour:
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
+--- !u!114 &8828888872701342854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003504808538462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed3291cd5d2df44a4894272a480b834b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  _explosionPrefab: {fileID: 6819721490205428198, guid: 04822676f39a9402dbef27068015d90e,
+    type: 3}
+--- !u!114 &2494363441629484416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003504808538462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f84df4aee34ad4b1e89fb5efb7f93f0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &95861066949347596
 Animator:
   serializedVersion: 3
@@ -80,20 +107,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &176333192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003504808538462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2695184e1b2024cffba3db352063467a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 3
-  _hp: 500
 --- !u!114 &6755992837364404302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,18 +231,6 @@ MonoBehaviour:
   isSelected: 0
   selection: {fileID: 558593620445992139}
   selectionArea: {fileID: 6818003226478688670}
---- !u!114 &8828888872701342854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003504808538462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed3291cd5d2df44a4894272a480b834b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1099529810087280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,6 +1162,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761658248280804448, guid: 756b5c8943ab5479ea68c4accaba10a4,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.01027944
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761658248280804448, guid: 756b5c8943ab5479ea68c4accaba10a4,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761658248280804448, guid: 756b5c8943ab5479ea68c4accaba10a4,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.12905817
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 756b5c8943ab5479ea68c4accaba10a4, type: 3}

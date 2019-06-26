@@ -5,5 +5,5 @@ using UnityEngine;
 
 public interface IBulletInitializer
 {
-    Task<UnitAvatar> Initialize(UnitAvatar striker, UnitAvatar target, Vector3 from, Vector3 direction, int damage);
+    Task<UnitModel> Initialize(UnitModel striker, UnitModel target, Vector3 from, Vector3 direction, int damage);
 }

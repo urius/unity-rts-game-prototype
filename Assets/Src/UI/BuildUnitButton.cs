@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class BuildUnitButton : MonoBehaviour
 {
-    [SerializeField]
-    private RobotsFactoryController _factoryController;
+    [Inject]
+    private UnitsConfig _unitsConfig;
+
 
     [SerializeField]
-    private int _buildableUnitIndex;
+    private RobotsFactoryController _factoryController;
+    [SerializeField]
+    private MobileUnitType _buildableUnitType;
+
+
     private Button _button;
     private Image _progressImage;
     private Text _costText;
@@ -32,12 +35,12 @@ public class BuildUnitButton : MonoBehaviour
         _progressImage.fillAmount = 0;
         _queueText.text = string.Empty;
 
-        _costText.text = _factoryController.GetUnitInfo(_buildableUnitIndex).cost + "$";
+        _costText.text = _unitsConfig.GetConfigByType(_buildableUnitType).cost + "$";
     }
 
-    private void OnUpdateBuildInfo(int index, float progress)
+    private void OnUpdateBuildInfo(MobileUnitType typeId, float progress)
     {
-        if (index == _buildableUnitIndex)
+        if (typeId == _buildableUnitType)
         {
             if (progress >= 1)
             {
@@ -54,13 +57,13 @@ public class BuildUnitButton : MonoBehaviour
 
     private void ShowUnitsInQueueCount()
     {
-        var unitsCountInQueue = _factoryController.GetUnitsCountInBuildQueue(_buildableUnitIndex);
+        var unitsCountInQueue = _factoryController.GetUnitsCountInBuildQueue(_buildableUnitType);
         _queueText.text = unitsCountInQueue <= 0 ? string.Empty : unitsCountInQueue.ToString();
     }
 
     void OnClick()
     {
-        _factoryController.AddToBuildQueue(_buildableUnitIndex);
+        _factoryController.AddToBuildQueue(_buildableUnitType);
 
         ShowUnitsInQueueCount();
     }

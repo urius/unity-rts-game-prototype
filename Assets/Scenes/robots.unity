@@ -310,7 +310,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 53.386, y: -140, z: 0}
 --- !u!114 &53859690
 MonoBehaviour:
@@ -475,6 +475,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 488238351, guid: 8b7e053aca216bd4ab19bca8c9b24d83, type: 3}
+      propertyPath: team
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277541474048272118, guid: 8b7e053aca216bd4ab19bca8c9b24d83,
+        type: 3}
+      propertyPath: _hp
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277541474048272118, guid: 8b7e053aca216bd4ab19bca8c9b24d83,
+        type: 3}
+      propertyPath: _explosionPrefab
+      value: 
+      objectReference: {fileID: 6819721490205428198, guid: 04822676f39a9402dbef27068015d90e,
+        type: 3}
+    - target: {fileID: 8277541474048272118, guid: 8b7e053aca216bd4ab19bca8c9b24d83,
+        type: 3}
       propertyPath: team
       value: 1
       objectReference: {fileID: 0}
@@ -703,31 +719,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4505405576231088080, guid: 23037ac2bd4049c4f98e969f83a64c42,
-        type: 3}
-      propertyPath: _monoInstallers.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4505405576231088080, guid: 23037ac2bd4049c4f98e969f83a64c42,
-        type: 3}
-      propertyPath: _installerPrefabs.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4505405576231088080, guid: 23037ac2bd4049c4f98e969f83a64c42,
-        type: 3}
-      propertyPath: _scriptableObjectInstallers.Array.size
-      value: 0
+    - target: {fileID: 1003504808538462, guid: 23037ac2bd4049c4f98e969f83a64c42, type: 3}
+      propertyPath: m_Name
+      value: Tank_Cannon
       objectReference: {fileID: 0}
     - target: {fileID: 4505405576231088080, guid: 23037ac2bd4049c4f98e969f83a64c42,
         type: 3}
       propertyPath: _monoInstallers.Array.data[1]
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4505405576231088080, guid: 23037ac2bd4049c4f98e969f83a64c42,
-        type: 3}
-      propertyPath: _monoInstallers.Array.data[0]
-      value: 
-      objectReference: {fileID: 2128846606}
     - target: {fileID: 4505405576231088080, guid: 23037ac2bd4049c4f98e969f83a64c42,
         type: 3}
       propertyPath: _installerPrefabs.Array.data[1]
@@ -737,10 +737,6 @@ PrefabInstance:
         type: 3}
       propertyPath: _installerPrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1003504808538462, guid: 23037ac2bd4049c4f98e969f83a64c42, type: 3}
-      propertyPath: m_Name
-      value: Tank_Cannon
       objectReference: {fileID: 0}
     - target: {fileID: 4143857580379300, guid: 23037ac2bd4049c4f98e969f83a64c42, type: 3}
       propertyPath: m_LocalPosition.x
@@ -772,7 +768,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4143857580379300, guid: 23037ac2bd4049c4f98e969f83a64c42, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4143857580379300, guid: 23037ac2bd4049c4f98e969f83a64c42, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -784,6 +780,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4143857580379300, guid: 23037ac2bd4049c4f98e969f83a64c42, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176333189, guid: 23037ac2bd4049c4f98e969f83a64c42, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -850,8 +850,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d11938e949df4163980bed51dedb10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _team: 0
-  _gameData: {fileID: 857303791}
 --- !u!114 &498606059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1028,7 +1026,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -24.812, z: 0}
 --- !u!1 &831973213
 GameObject:
@@ -1094,7 +1092,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &857303790
 GameObject:
@@ -1105,9 +1103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 857303792}
-  - component: {fileID: 857303791}
   - component: {fileID: 857303793}
-  - component: {fileID: 857303794}
   - component: {fileID: 857303795}
   m_Layer: 0
   m_Name: GameLogic
@@ -1116,24 +1112,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &857303791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 857303790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17f495284646b42cebc4a17bc6307efa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  userTeam: 0
-  playersData:
-  - team: 0
-    money: 5000
-  - team: 1
-    money: 5000
 --- !u!4 &857303792
 Transform:
   m_ObjectHideFlags: 0
@@ -1146,7 +1124,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &857303793
 MonoBehaviour:
@@ -1161,19 +1139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 1
-  gameData: {fileID: 857303791}
---- !u!114 &857303794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 857303790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d283aa1da44824e518e6d582da75b3a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &857303795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1197,6 +1162,7 @@ GameObject:
   - component: {fileID: 966704030}
   - component: {fileID: 966704029}
   - component: {fileID: 966704031}
+  - component: {fileID: 966704032}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -1216,7 +1182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
+  _scriptableObjectInstallers:
+  - {fileID: 11400000, guid: 2543109ef4d2648cea5838bc0c31a7f7, type: 2}
   _monoInstallers:
   - {fileID: 966704031}
   _installerPrefabs: []
@@ -1248,6 +1215,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 251dbb04821204762bfbe1d98d23a84b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameData:
+    _userTeam: 0
+    playersData:
+    - _team: 0
+      _money: 5000
+    - _team: 1
+      _money: 5000
+--- !u!114 &966704032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966704028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e5b81519ba7742249abe9a9d756ae9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1052189103
@@ -1483,6 +1469,11 @@ PrefabInstance:
     - target: {fileID: 9008330102324074227, guid: 5e908fd4923db4eb2881f45bacfbc13d,
         type: 3}
       propertyPath: _buildableUnitIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9008330102324074227, guid: 5e908fd4923db4eb2881f45bacfbc13d,
+        type: 3}
+      propertyPath: _buildableUnitType
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1910864296007970437, guid: 5e908fd4923db4eb2881f45bacfbc13d,
@@ -1819,6 +1810,17 @@ PrefabInstance:
       propertyPath: team
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8277541474048272118, guid: 8b7e053aca216bd4ab19bca8c9b24d83,
+        type: 3}
+      propertyPath: _explosionPrefab
+      value: 
+      objectReference: {fileID: 6819721490205428198, guid: 04822676f39a9402dbef27068015d90e,
+        type: 3}
+    - target: {fileID: 8277541474048272118, guid: 8b7e053aca216bd4ab19bca8c9b24d83,
+        type: 3}
+      propertyPath: _hp
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 3950688455274749227, guid: 8b7e053aca216bd4ab19bca8c9b24d83,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -2063,7 +2065,7 @@ RectTransform:
   - {fileID: 1192201936}
   - {fileID: 498606057}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2076,18 +2078,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1063967795}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2128846606 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8828888872701342854, guid: 23037ac2bd4049c4f98e969f83a64c42,
-    type: 3}
-  m_PrefabInstance: {fileID: 457915005}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed3291cd5d2df44a4894272a480b834b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1910864295018078295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2210,5 +2200,10 @@ PrefabInstance:
       propertyPath: _factoryController
       value: 
       objectReference: {fileID: 488238355}
+    - target: {fileID: 9008330102324074227, guid: 5e908fd4923db4eb2881f45bacfbc13d,
+        type: 3}
+      propertyPath: _buildableUnitType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e908fd4923db4eb2881f45bacfbc13d, type: 3}

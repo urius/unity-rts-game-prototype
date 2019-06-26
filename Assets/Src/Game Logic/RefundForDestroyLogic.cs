@@ -1,34 +1,25 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Zenject;
 
 public class RefundForDestroyLogic : MonoBehaviour
 {
+    [Inject]
     private GameData _gameData;
+    [Inject]
+    private SignalBus _signalBus;
 
-    // Start is called before the first frame update
-    void Awake()
-    {
-        _gameData = GetComponent<GameData>();
-    }
     void Start()
     {
-        EventBus.UnitDestroyedBy += OnUnitDestroyed;
+        _signalBus.Subscribe<UnitDestroyedBySignal>(OnUnitDestroyedBy);
     }
 
-    void Stop() {
-        EventBus.UnitDestroyedBy -= OnUnitDestroyed;
-    }
-
-    private void OnUnitDestroyed(UnitAvatar destroyed, UnitAvatar killer)
+    private void OnUnitDestroyedBy(UnitDestroyedBySignal signal)
     {
-        _gameData.TryChangePlayerMoney(killer.team, destroyed.cost / 2);
+        _gameData.TryChangePlayerMoney(signal.striker.teamId, signal.target.cost / 2);
     }
 
-    // Update is called once per frame
-    void Update()
+    void Stop()
     {
-
+        _signalBus.Unsubscribe<UnitDestroyedBySignal>(OnUnitDestroyedBy);
     }
 }
