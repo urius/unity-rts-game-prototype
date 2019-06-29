@@ -13,11 +13,6 @@ GameObject:
   - component: {fileID: 8828888872701342854}
   - component: {fileID: 2494363441629484416}
   - component: {fileID: 95861066949347596}
-  - component: {fileID: 6755992837364404302}
-  - component: {fileID: 364926469946901690}
-  - component: {fileID: 176333189}
-  - component: {fileID: 1471444339520886783}
-  - component: {fileID: 6799360756262636710}
   - component: {fileID: 7889401197170997438}
   - component: {fileID: 6818003226478688670}
   - component: {fileID: 772181830897325135}
@@ -74,8 +69,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
-  _explosionPrefab: {fileID: 6819721490205428198, guid: 04822676f39a9402dbef27068015d90e,
-    type: 3}
+  _movingSettings:
+    _movingAngle: 50
+  _turretSettings:
+    turnSpeedPerSecond: 100
+    turret: {fileID: 4638403799570326}
+    weapons:
+    - animator: {fileID: 95559650772076926}
+      firePoint: {fileID: 4690031455692362}
+      BulletPrefab: {fileID: 449360538872542406, guid: 8c25fa76c1960401982c2098d49dd2b6,
+        type: 3}
+      reloadTimeSeconds: 2
+      delayBeforeFirstShotSeconds: 0
+      damagePerShot: 30
 --- !u!114 &2494363441629484416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,80 +113,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6755992837364404302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003504808538462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03744ead8e4f748b092cdee736059b69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &364926469946901690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003504808538462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d72cc79374fb8465b816995cb0643904, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turret: {fileID: 4638403799570326}
-  weapons:
-  - firePoint: {fileID: 4690031455692362}
-    BulletPrefab: {fileID: 449360538872542406, guid: 8c25fa76c1960401982c2098d49dd2b6,
-      type: 3}
-    reloadTimeSeconds: 2
-    delayBeforeFirstShotSeconds: 0
-    damagePerShot: 30
-  detectRadius: 80
---- !u!114 &176333189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003504808538462}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b9b6f1c58e48486b9b8b46476d28f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1471444339520886783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003504808538462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47fd2cb20b66b4be49d1900eeb8291d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turretAnimators:
-  - {fileID: 95559650772076926}
---- !u!114 &6799360756262636710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003504808538462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fdae4e94a62e442ca32710ecfb64460, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _movingAngle: 80
-  _stopAnimSpeed: 0.03
-  _stopAnimDistance: 2
 --- !u!195 &7889401197170997438
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -223,14 +155,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1003504808538462}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ac6328c41b9d4dc6b63c8375ea2e37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSelected: 0
-  selection: {fileID: 558593620445992139}
-  selectionArea: {fileID: 6818003226478688670}
+  _explosionPrefab: {fileID: 6819721490205428198, guid: 04822676f39a9402dbef27068015d90e,
+    type: 3}
+  _isSelected: 0
+  _selection: {fileID: 558593620445992139}
+  _selectionArea: {fileID: 6818003226478688670}
+  _stopAnimSpeed: 0.03
+  _stopAnimDistance: 2
 --- !u!1 &1099529810087280
 GameObject:
   m_ObjectHideFlags: 0

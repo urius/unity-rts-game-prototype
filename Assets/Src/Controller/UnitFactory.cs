@@ -8,12 +8,12 @@ public class UnitFactory
     [Inject]
     private DiContainer _container;
 
-    public GameObject Create(MobileUnitType type, int team, Transform spawnTransform)
+    public UnitFacade Create(MobileUnitType type, int team, Transform spawnTransform)
     {
-        var unit = GameObject.Instantiate(_unitsConfig.GetConfigByType(type).prefab, spawnTransform) as GameObject;
+        var unit = GameObject.Instantiate(_unitsConfig.GetConfigByType(type).prefab, spawnTransform.position, spawnTransform.rotation) as GameObject;
         unit.GetComponent<UnitInstallerBase>().SetupTeam(team);
         _container.InjectGameObject(unit);
 
-        return unit;
+        return unit.GetComponent<UnitFacade>();
     }
 }

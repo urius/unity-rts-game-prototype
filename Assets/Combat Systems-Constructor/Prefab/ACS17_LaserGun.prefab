@@ -1210,17 +1210,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4347872983944570}
   - component: {fileID: 179895614946516063}
+  - component: {fileID: 5835295510179776430}
   - component: {fileID: -6573091928839366427}
   - component: {fileID: 95506970698132046}
-  - component: {fileID: 585117631813325038}
-  - component: {fileID: 666630646}
-  - component: {fileID: 7372470443329703769}
   - component: {fileID: 8488632152193238384}
   - component: {fileID: 6409257813864779590}
-  - component: {fileID: 666630651}
-  - component: {fileID: 666630652}
   - component: {fileID: 1853221632684854779}
-  - component: {fileID: 5835295510179776430}
   m_Layer: 0
   m_Name: ACS17_LaserGun
   m_TagString: Untagged
@@ -1261,6 +1256,39 @@ MonoBehaviour:
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
+--- !u!114 &5835295510179776430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193977977764896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e0084e20e02492c9a5a4eefe18cf54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  _movingSettings:
+    _movingAngle: 30
+  _turretSettings:
+    turnSpeedPerSecond: 150
+    turret: {fileID: 4636668745003868}
+    weapons:
+    - animator: {fileID: 95824026764245096}
+      firePoint: {fileID: 4463146491088782}
+      BulletPrefab: {fileID: 867471586286493067, guid: 50e82471da56c4a98ac1475b969a780b,
+        type: 3}
+      reloadTimeSeconds: 0.4
+      delayBeforeFirstShotSeconds: 0
+      damagePerShot: 10
+    - animator: {fileID: 95699284664577560}
+      firePoint: {fileID: 4363505606601796}
+      BulletPrefab: {fileID: 867471586286493067, guid: 50e82471da56c4a98ac1475b969a780b,
+        type: 3}
+      reloadTimeSeconds: 0.4
+      delayBeforeFirstShotSeconds: 0.2
+      damagePerShot: 10
 --- !u!114 &-6573091928839366427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1292,60 +1320,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &585117631813325038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193977977764896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03744ead8e4f748b092cdee736059b69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &666630646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193977977764896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d72cc79374fb8465b816995cb0643904, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turret: {fileID: 4636668745003868}
-  weapons:
-  - firePoint: {fileID: 4463146491088782}
-    BulletPrefab: {fileID: 867471586286493067, guid: 50e82471da56c4a98ac1475b969a780b,
-      type: 3}
-    reloadTimeSeconds: 0.4
-    delayBeforeFirstShotSeconds: 0
-    damagePerShot: 10
-  - firePoint: {fileID: 4363505606601796}
-    BulletPrefab: {fileID: 867471586286493067, guid: 50e82471da56c4a98ac1475b969a780b,
-      type: 3}
-    reloadTimeSeconds: 0.4
-    delayBeforeFirstShotSeconds: 0.2
-    damagePerShot: 10
-  detectRadius: 50
---- !u!114 &7372470443329703769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193977977764896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fdae4e94a62e442ca32710ecfb64460, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _movingAngle: 30
-  _stopAnimSpeed: 0.03
-  _stopAnimDistance: 2
 --- !u!195 &8488632152193238384
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1381,33 +1355,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7, y: 7, z: 7}
   m_Center: {x: 0, y: 3.5, z: 0}
---- !u!114 &666630651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193977977764896}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b9b6f1c58e48486b9b8b46476d28f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &666630652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193977977764896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47fd2cb20b66b4be49d1900eeb8291d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turretAnimators:
-  - {fileID: 95824026764245096}
-  - {fileID: 95699284664577560}
 --- !u!114 &1853221632684854779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1415,28 +1362,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1193977977764896}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ac6328c41b9d4dc6b63c8375ea2e37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSelected: 0
-  selection: {fileID: 8956601932622178421}
-  selectionArea: {fileID: 6409257813864779590}
---- !u!114 &5835295510179776430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193977977764896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e0084e20e02492c9a5a4eefe18cf54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 0
-  _explosionPrefab: {fileID: 0}
+  _explosionPrefab: {fileID: 6819721490205428198, guid: 04822676f39a9402dbef27068015d90e,
+    type: 3}
+  _isSelected: 0
+  _selection: {fileID: 8956601932622178421}
+  _selectionArea: {fileID: 6409257813864779590}
+  _stopAnimSpeed: 0.03
+  _stopAnimDistance: 2
 --- !u!1 &1196869556722886
 GameObject:
   m_ObjectHideFlags: 0

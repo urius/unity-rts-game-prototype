@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public class TankInstaller : UnitInstallerBase
+public class TankInstaller : MovableUnitInstallerBase
 {
     [Inject]
     private UnitsConfig _unitsConfig;
@@ -10,10 +10,12 @@ public class TankInstaller : UnitInstallerBase
     {
         base.InstallBindings();
 
-        Container.BindInstance(gameObject.GetComponent<Animator>());
-
         Container.Bind<IMoveAnimationAdapter>()
             .To<TankCannonMoveAnimationAdapter>()
+            .AsSingle();
+
+        Container.Bind<ITurretAnimationAdapter>()
+            .To<CommonTurretAnimationAdapter>()
             .AsSingle();
     }
 

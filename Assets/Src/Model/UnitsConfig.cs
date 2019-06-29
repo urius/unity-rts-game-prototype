@@ -14,6 +14,7 @@ public class UnitsConfig
 
 public enum MobileUnitType
 {
+    None = 0,
     Tank = 1,
     Robot = 2,
 }

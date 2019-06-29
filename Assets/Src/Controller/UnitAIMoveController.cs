@@ -2,75 +2,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using Zenject;
 
-public class UnitAIController : MonoBehaviour
+public class UnitAIMoveController : IInitializable, IDisposable
 {
+    [Inject]
+    private CoroutinesManager _coroutinesManager;
     [Inject]
     private UnitsCollectionProvider _unitsCollectionProvider;
     [Inject]
     private UnitModel _model;
 
-    private NavMeshMoveToMouse _moveToMouseScript;
-    private NavMeshMoveDecorator _moveToPositionScript;
-
-
-    void Awake()
+    public void Initialize()
     {
-        _moveToMouseScript = GetComponent<NavMeshMoveToMouse>();
-        _moveToPositionScript = GetComponent<NavMeshMoveDecorator>();
-    }
-    void Start()
-    {
-        StartCoroutine(ChooseAttackTargetCoroutine());
-        StartCoroutine(ChooseMoveToTargetCoroutine());
+        _coroutinesManager.StartCoroutine(ChooseTargetToMoveCoroutine());
+        _model.UnitDestroyed += OnUnitDestroyed;
     }
 
-    private bool needToProcessMoving => _moveToMouseScript == null || !_moveToMouseScript.isActiveAndEnabled;
-    // Update is called once per frame
-    void Update()
+    private void OnUnitDestroyed()
     {
+        _model.UnitDestroyed -= OnUnitDestroyed;
+        _coroutinesManager.StopAllComponentCoroutines();
     }
 
-    private IEnumerator ChooseAttackTargetCoroutine()
+    private IEnumerator ChooseTargetToMoveCoroutine()
     {
         while (true)
         {
-            if (!enabled)
-            {
-                yield return new WaitForFixedUpdate();
-            }
-
-            var attackTarget = GetClosestAttackableEnemy(_unitsCollectionProvider.units);
-            _model.turretTarget = attackTarget;
-
-            yield return new WaitForSeconds(1f);
-        }
-    }
-
-    private IEnumerator ChooseMoveToTargetCoroutine()
-    {
-        while (true)
-        {
-            if (!enabled)
-            {
-                yield return new WaitForFixedUpdate();
-            }
-
-            if (needToProcessMoving)
-            {
-                var target = GetClosestEnemy(_unitsCollectionProvider.units);
-
-                ProcessMovingTo(target);
-            }
+            //var target = GetClosestEnemy(_unitsCollectionProvider.units);
+            var target = GetClosestEnemy(UnitsCollectionProvider._units);
+            _model.destinationPoint = GetDestinationPoint(target);
 
             yield return new WaitForSeconds(3f);
         }
     }
 
-    private void ProcessMovingTo(UnitModel target)
+    private Vector2 GetDestinationPoint(UnitModel target)
     {
+        var transform = _model.transform;
         var moveToPosition = transform.position;
         if (target != null && target.hp > 0)
         {
@@ -97,11 +66,12 @@ public class UnitAIController : MonoBehaviour
             }
 
             var team = _model.teamId;
-            var enemiesExceptTarget = _unitsCollectionProvider.units.FindAll(u => (u.teamId != team) && (u != target));
+            
+            //var enemiesExceptTarget = _unitsCollectionProvider.units.FindAll(u => (u.teamId != team) && (u != target));
+            var enemiesExceptTarget = UnitsCollectionProvider._units.FindAll(u => (u.teamId != team) && (u != target));
             var extraEnemiesTargetedToMe = GetUnitsTargetedMe(enemiesExceptTarget);
             if (extraEnemiesTargetedToMe.Count > 0)
             {
-
                 //move out from danger zone
                 foreach (var targettingEnemy in extraEnemiesTargetedToMe)
                 {
@@ -120,13 +90,14 @@ public class UnitAIController : MonoBehaviour
                 var rotatedVectorFromEnemyToMe = Quaternion.Euler(0, 90, 0) * vectorFromEnemyToMe;
                 moveToPosition = target.transform.position + rotatedVectorFromEnemyToMe;
             }
-
-            _moveToPositionScript.MoveToPosition(moveToPosition);
         }
+
+        return moveToPosition;
     }
 
     private UnitModel GetClosestEnemy(IEnumerable<UnitModel> unitsToIterate)
     {
+        var transform = _model.transform;
         UnitModel closest = null;
         foreach (var unit in unitsToIterate)
         {
@@ -142,37 +113,22 @@ public class UnitAIController : MonoBehaviour
         return closest;
     }
 
-    private UnitModel GetClosestAttackableEnemy(IEnumerable<UnitModel> unitsToIterate)
-    {
-        UnitModel closest = null;
-        foreach (var unit in unitsToIterate)
-        {
-            if (_model.teamId != unit.teamId)
-            {
-                var distance = Vector3.Distance(transform.position, unit.transform.position);
-                if (distance <= _model.detectRadius)
-                {
-                    if (closest == null || distance < Vector3.Distance(transform.position, closest.transform.position))
-                    {
-                        closest = unit;
-                    }
-                }
-            }
-        }
-        return closest;
-    }
-
     private IList<UnitModel> GetUnitsTargetedMe(IEnumerable<UnitModel> unitsToIterate)
     {
         var result = new List<UnitModel>();
         foreach (var unit in unitsToIterate)
         {
-            if (unit.turretTarget == _model)
+            if (unit.attackTarget == _model)
             {
                 result.Add(unit);
             }
         }
 
         return result;
+    }
+    public void Dispose()
+    {
+        _model.UnitDestroyed -= OnUnitDestroyed;
+        _coroutinesManager?.StopAllComponentCoroutines();
     }
 }

@@ -723,21 +723,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tank_Cannon
       objectReference: {fileID: 0}
-    - target: {fileID: 4505405576231088080, guid: 23037ac2bd4049c4f98e969f83a64c42,
-        type: 3}
-      propertyPath: _monoInstallers.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4505405576231088080, guid: 23037ac2bd4049c4f98e969f83a64c42,
-        type: 3}
-      propertyPath: _installerPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4505405576231088080, guid: 23037ac2bd4049c4f98e969f83a64c42,
-        type: 3}
-      propertyPath: _installerPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4143857580379300, guid: 23037ac2bd4049c4f98e969f83a64c42, type: 3}
       propertyPath: m_LocalPosition.x
       value: 102.03158
@@ -782,24 +767,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 176333189, guid: 23037ac2bd4049c4f98e969f83a64c42, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 8828888872701342854, guid: 23037ac2bd4049c4f98e969f83a64c42,
+        type: 3}
+      propertyPath: _turretSettings.turnSpeedPerSecond
+      value: 100
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 364926469946901690, guid: 23037ac2bd4049c4f98e969f83a64c42, type: 3}
+    - {fileID: 1471444339520886783, guid: 23037ac2bd4049c4f98e969f83a64c42, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 23037ac2bd4049c4f98e969f83a64c42, type: 3}
---- !u!114 &488238355 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1715973309513367351, guid: 8b7e053aca216bd4ab19bca8c9b24d83,
-    type: 3}
-  m_PrefabInstance: {fileID: 1638889729}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 732bc1642ccbe49108f48863ddeae477, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &498606056
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,6 +1212,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e5b81519ba7742249abe9a9d756ae9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &995087209 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 111711456626673518, guid: 8b7e053aca216bd4ab19bca8c9b24d83,
+    type: 3}
+  m_PrefabInstance: {fileID: 1638889729}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e173ce058de47deab1b911fce8bf91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1052189103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,7 +1453,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _factoryController
       value: 
-      objectReference: {fileID: 488238355}
+      objectReference: {fileID: 0}
     - target: {fileID: 9008330102324074227, guid: 5e908fd4923db4eb2881f45bacfbc13d,
         type: 3}
       propertyPath: _buildableUnitIndex
@@ -1806,32 +1794,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 488238351, guid: 8b7e053aca216bd4ab19bca8c9b24d83, type: 3}
-      propertyPath: team
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8277541474048272118, guid: 8b7e053aca216bd4ab19bca8c9b24d83,
-        type: 3}
-      propertyPath: _explosionPrefab
-      value: 
-      objectReference: {fileID: 6819721490205428198, guid: 04822676f39a9402dbef27068015d90e,
-        type: 3}
-    - target: {fileID: 8277541474048272118, guid: 8b7e053aca216bd4ab19bca8c9b24d83,
-        type: 3}
-      propertyPath: _hp
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 3950688455274749227, guid: 8b7e053aca216bd4ab19bca8c9b24d83,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 15.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 3950688455274749227, guid: 8b7e053aca216bd4ab19bca8c9b24d83,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1715973309513367351, guid: 8b7e053aca216bd4ab19bca8c9b24d83, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8b7e053aca216bd4ab19bca8c9b24d83, type: 3}
 --- !u!1 &1642895087
 GameObject:
@@ -1980,6 +1944,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1935991696}
+  - component: {fileID: 1935991697}
+  - component: {fileID: 1935991698}
   - component: {fileID: 1935991695}
   - component: {fileID: 1935991694}
   - component: {fileID: 1935991693}
@@ -2072,6 +2038,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1935991697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935991692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 1935991698}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}
+--- !u!114 &1935991698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935991692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c78a534e465645ed8e2052865d03f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitFactoryFacade: {fileID: 995087209}
 --- !u!224 &2100651040 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1910864296007970439, guid: 5e908fd4923db4eb2881f45bacfbc13d,
@@ -2199,7 +2196,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _factoryController
       value: 
-      objectReference: {fileID: 488238355}
+      objectReference: {fileID: 0}
     - target: {fileID: 9008330102324074227, guid: 5e908fd4923db4eb2881f45bacfbc13d,
         type: 3}
       propertyPath: _buildableUnitType

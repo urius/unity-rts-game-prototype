@@ -1,13 +1,11 @@
 using UnityEngine;
+using UnityEngine.AI;
 using Zenject;
 
 public abstract class UnitInstallerBase : MonoInstaller
 {
     [SerializeField]
     protected int team;
-
-    [SerializeField]
-    private GameObject _explosionPrefab;
 
     public void SetupTeam(int team)
     {
@@ -22,11 +20,13 @@ public abstract class UnitInstallerBase : MonoInstaller
         Container.BindInstance<UnitModel>(model).AsSingle();
 
         Container.BindInstance<Transform>(transform).AsSingle();
-        Container.BindInstance<GameObject>(_explosionPrefab).WithId("ExplosionPrefab").AsSingle();
+        Container.BindInstance<GameObject>(transform.gameObject).AsSingle();
 
-        Container.BindInterfacesAndSelfTo<UnitMainController>().AsSingle();
+        Container.BindInterfacesAndSelfTo<UnitMainController>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<UnitDisplayHpController>().AsSingle().NonLazy();
 
-        var c = transform.GetComponent<NavMeshMoveToMouse>();
+        var hpBar = transform.GetComponentInChildren<StripeBar>();
+        Container.BindInstance(hpBar).WhenInjectedInto<UnitDisplayHpController>();
 
         Container.QueueForInject(model);
     }

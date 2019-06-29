@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 public class StripeBar : MonoBehaviour
@@ -26,14 +24,12 @@ public class StripeBar : MonoBehaviour
 
     public void SetPercent(float value, bool affectColor = true)
     {
-
         var relativeValue = Mathf.Clamp(value / 100, 0, 1);
         _dynamicPart.transform.localScale = new Vector3(relativeValue, 1, 1);
         if (affectColor)
         {
             SetColor(Color.Lerp(Color.green, Color.red, 1 - relativeValue));
         }
-
         
         if (_destroyIfLessThanZero && value <= 0)
         {

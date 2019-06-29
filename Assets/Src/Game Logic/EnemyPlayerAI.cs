@@ -13,12 +13,12 @@ public class EnemyPlayerAI : MonoBehaviour
 
     [SerializeField]
     private int team;
-    private RobotsFactoryController _robotsFactory;
+    private UnitFactoryModel _unitFactoryModel;
     private IPlayerData _playerData;
     void Start()
     {
-        var robotsFactories = FindObjectsOfType<RobotsFactoryController>();
-        _robotsFactory = Array.Find(robotsFactories, f => f.GetComponent<UnitFacade>().UnitModel.teamId == team);
+        var robotsFactories = FindObjectsOfType<UnitFactoryFacade>();
+        _unitFactoryModel = Array.Find(robotsFactories, f => f.UnitModel.teamId == team).UnitFactoryModel;
 
         _playerData = gameData.GetPlayerData(team);
 
@@ -47,7 +47,7 @@ public class EnemyPlayerAI : MonoBehaviour
             if (canBeBuiltUnits.Count > 0)
             {
                 var orderUnitType = canBeBuiltUnits[UnityEngine.Random.Range(0, canBeBuiltUnits.Count)];
-                _robotsFactory.AddToBuildQueue(orderUnitType);
+                _unitFactoryModel.AddUnitRequest(orderUnitType);
             }
 
             yield return new WaitForSeconds(1f);

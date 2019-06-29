@@ -13,7 +13,6 @@ public class GameInstaller : MonoInstaller
         Container.DeclareSignal<MoneyChangedSignal>();
         Container.DeclareSignal<UnitDestroyedBySignal>();
         Container.DeclareSignal<UnitAddedSignal>();
-        Container.DeclareSignal<UnitDestroyedSignal>();
 
         Container.QueueForInject(_gameData);
         Container.BindInterfacesAndSelfTo<GameData>().FromInstance(_gameData).AsSingle();
@@ -21,7 +20,6 @@ public class GameInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<UnitsCollectionProvider>().AsSingle();
 
         Container.BindInstance(GetComponent<CoroutinesHolder>()).WhenInjectedInto<CoroutinesManager>();
-        Container.BindInterfacesAndSelfTo<CoroutinesManager>().AsCached();
-
+        Container.BindInterfacesAndSelfTo<CoroutinesManager>().AsTransient();
     }
 }

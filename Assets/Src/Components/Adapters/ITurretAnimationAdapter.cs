@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public interface ITurretAnimationAdapter
 {
-    void Fire(int weaponIndex = -1);
+    void Fire(Animator turretAnimator);
 }

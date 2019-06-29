@@ -1,19 +1,20 @@
-using UnityEngine;
 using Zenject;
 
-public class AscInstaller : UnitInstallerBase
+public class AscInstaller : MovableUnitInstallerBase
 {
     [Inject]
     private UnitsConfig _unitsConfig;
-    
+
     public override void InstallBindings()
     {
         base.InstallBindings();
-        
-        Container.BindInstance<Animator>(gameObject.GetComponent<Animator>());
 
         Container.Bind<IMoveAnimationAdapter>()
             .To<ACSMoveAnimationAdapter>()
+            .AsSingle();
+
+        Container.Bind<ITurretAnimationAdapter>()
+            .To<CommonTurretAnimationAdapter>()
             .AsSingle();
     }
 

@@ -6,10 +6,10 @@ public class BuildUnitButton : MonoBehaviour
 {
     [Inject]
     private UnitsConfig _unitsConfig;
+    [Inject]
+    private UnitFactoryModel _factoryModel;
 
 
-    [SerializeField]
-    private RobotsFactoryController _factoryController;
     [SerializeField]
     private MobileUnitType _buildableUnitType;
 
@@ -30,7 +30,7 @@ public class BuildUnitButton : MonoBehaviour
     void Start()
     {
         _button.onClick.AddListener(OnClick);
-        _factoryController.UpdateBuildInfo += OnUpdateBuildInfo;
+        _factoryModel.BuildProgressUpdated += OnBuildProgressUpdated;
 
         _progressImage.fillAmount = 0;
         _queueText.text = string.Empty;
@@ -38,7 +38,7 @@ public class BuildUnitButton : MonoBehaviour
         _costText.text = _unitsConfig.GetConfigByType(_buildableUnitType).cost + "$";
     }
 
-    private void OnUpdateBuildInfo(MobileUnitType typeId, float progress)
+    private void OnBuildProgressUpdated(MobileUnitType typeId, float progress)
     {
         if (typeId == _buildableUnitType)
         {
@@ -57,23 +57,19 @@ public class BuildUnitButton : MonoBehaviour
 
     private void ShowUnitsInQueueCount()
     {
-        var unitsCountInQueue = _factoryController.GetUnitsCountInBuildQueue(_buildableUnitType);
+        var unitsCountInQueue = _factoryModel.GetUnitsCountInBuildQueue(_buildableUnitType);
         _queueText.text = unitsCountInQueue <= 0 ? string.Empty : unitsCountInQueue.ToString();
     }
 
-    void OnClick()
+    private void OnClick()
     {
-        _factoryController.AddToBuildQueue(_buildableUnitType);
+        _factoryModel.AddUnitRequest(_buildableUnitType);
 
         ShowUnitsInQueueCount();
     }
-    // Update is called once per frame
-    void Update()
-    {
-    }
 
-    void Stop()
+    private void Stop()
     {
-        _factoryController.UpdateBuildInfo -= OnUpdateBuildInfo;
+        _factoryModel.BuildProgressUpdated -= OnBuildProgressUpdated;
     }
 }
