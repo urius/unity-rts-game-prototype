@@ -5,10 +5,10 @@ public class AscInstaller : MovableUnitInstallerBase
     [Inject]
     private UnitsConfig _unitsConfig;
 
-    public override void InstallBindings()
+    protected override void InstallExtraBindings()
     {
-        base.InstallBindings();
-
+        base.InstallExtraBindings();
+        
         Container.Bind<IMoveAnimationAdapter>()
             .To<ACSMoveAnimationAdapter>()
             .AsSingle();

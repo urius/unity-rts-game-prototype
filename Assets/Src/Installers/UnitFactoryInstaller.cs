@@ -1,5 +1,4 @@
 using UnityEngine;
-using Zenject;
 
 public class UnitFactoryInstaller : UnitInstallerBase
 {
@@ -9,10 +8,8 @@ public class UnitFactoryInstaller : UnitInstallerBase
     private int _cost;
     [SerializeField]
     private UnitFactoryController.Settings _unitFactoryControllerSettings;
-    public override void InstallBindings()
+    protected override void InstallExtraBindings()
     {
-        base.InstallBindings();
-
         Container.BindInstance(gameObject.GetComponent<Animator>());
 
         Container.BindInstance<UnitFactoryModel>(new UnitFactoryModel()).AsSingle();

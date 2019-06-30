@@ -30,7 +30,7 @@ public class SelectableDestroyableView : DestroyableView
     private Quaternion _lastRotation;
     private NavMeshAgent _navMeshAgent;
 
-    [Inject]
+
     public override void Construct()
     {
         base.Construct();
@@ -42,7 +42,6 @@ public class SelectableDestroyableView : DestroyableView
         _lastRotation = _model.transform.rotation;
 
         _model.SelectionChanged += OnSelectionChanged;
-        _model.UnitDestroyed += OnUnitDestroyed;
     }
 
     private void OnUnitDestroyed()
@@ -56,11 +55,10 @@ public class SelectableDestroyableView : DestroyableView
 
         _selection.SetActive(false);
         _model.SelectionChanged -= OnSelectionChanged;
-        _model.UnitDestroyed -= OnUnitDestroyed;
     }
 
 
-    private Vector3[] path => (_navMeshAgent.path != null && _navMeshAgent.path.corners.Length > 0) ?
+    private Vector3[] _path => (_navMeshAgent.path != null && _navMeshAgent.path.corners.Length > 0) ?
                         _navMeshAgent.path.corners :
                         new Vector3[] { transform.position };
 
@@ -69,7 +67,7 @@ public class SelectableDestroyableView : DestroyableView
         var transform = _model.transform;
         var deltaPos = Vector3.Distance(_lastPosition, transform.position);
         var deltaRot = Quaternion.Angle(_lastRotation, transform.rotation);
-        var lastPathPoint = path[path.Length - 1];
+        var lastPathPoint = _path[_path.Length - 1];
         if (deltaPos > _stopAnimSpeed && Vector3.Distance(transform.position, lastPathPoint) > _stopAnimDistance)
         {
             _animationAdapter.ChangeMoveState(MoveStates.MovingForward);

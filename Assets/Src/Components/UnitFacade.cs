@@ -4,7 +4,7 @@ using Zenject;
 public class UnitFacade : MonoBehaviour
 {
     [Inject]
-    private UnitModel _model;
+    protected UnitModel model;
 
-    public UnitModel UnitModel => _model;
+    public UnitModel UnitModel => model;
 }

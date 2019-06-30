@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
 public class RobotsFactoryAnimationAdapter : MoveAnimationAdapterBase
 {
-
     public override void Dead()
     {
         animator.SetBool("Destroy2", true);
@@ -12,7 +8,6 @@ public class RobotsFactoryAnimationAdapter : MoveAnimationAdapterBase
 
     public override void Idle()
     {
-        Debug.Log("animator is " + (animator !=null));
         animator.SetBool("Idle", true);
     }
 

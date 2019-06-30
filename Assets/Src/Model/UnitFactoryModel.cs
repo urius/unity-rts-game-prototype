@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class UnitFactoryModel
+public interface IReadonlyFactoryModel {
+    event Action<MobileUnitType, float> BuildProgressUpdated;
+    int GetUnitsCountInBuildQueue(MobileUnitType type);
+}
+
+public class UnitFactoryModel : IReadonlyFactoryModel
 {
-    public event Action<MobileUnitType> BuildUnitRequested = delegate { };
     public event Action<MobileUnitType, float> BuildProgressUpdated = delegate {};
 
     private readonly List<BuildingUnit> _buildQueue = new List<BuildingUnit>();
@@ -11,10 +15,6 @@ public class UnitFactoryModel
 
     public bool isBuilding => _buildQueue.Count > 0;
     public MobileUnitType currentBuildingUnitType => isBuilding ? _buildQueue[0].unitType : MobileUnitType.None;
-    public void AddUnitRequest(MobileUnitType type)
-    {
-        BuildUnitRequested(type);
-    }
 
     public void AddToBuildQueue(MobileUnitType unitType)
     {

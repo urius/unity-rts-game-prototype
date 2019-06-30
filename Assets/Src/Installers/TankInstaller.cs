@@ -1,4 +1,3 @@
-using UnityEngine;
 using Zenject;
 
 public class TankInstaller : MovableUnitInstallerBase
@@ -6,9 +5,9 @@ public class TankInstaller : MovableUnitInstallerBase
     [Inject]
     private UnitsConfig _unitsConfig;
 
-    public override void InstallBindings()
+    protected override void InstallExtraBindings()
     {
-        base.InstallBindings();
+        base.InstallExtraBindings();
 
         Container.Bind<IMoveAnimationAdapter>()
             .To<TankCannonMoveAnimationAdapter>()

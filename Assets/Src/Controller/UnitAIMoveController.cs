@@ -84,7 +84,7 @@ public class UnitAIMoveController : IInitializable, IDisposable
                 }
             }
 
-            if (Vector3.Distance(moveToPosition, transform.position) < 2 && _model.isAttacikng && _model.isLastShotHitTarget == false)
+            if (Vector3.Distance(moveToPosition, transform.position) < 2 && _model.isAttacking && _model.isLastShotHitTarget == false)
             {
                 var vectorFromEnemyToMe = transform.position - target.transform.position;
                 var rotatedVectorFromEnemyToMe = Quaternion.Euler(0, 90, 0) * vectorFromEnemyToMe;

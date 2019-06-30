@@ -7,7 +7,7 @@ public class BuildUnitButton : MonoBehaviour
     [Inject]
     private UnitsConfig _unitsConfig;
     [Inject]
-    private UnitFactoryModel _factoryModel;
+    private UnitFactoryFacade _factoryFacade;
 
 
     [SerializeField]
@@ -30,7 +30,7 @@ public class BuildUnitButton : MonoBehaviour
     void Start()
     {
         _button.onClick.AddListener(OnClick);
-        _factoryModel.BuildProgressUpdated += OnBuildProgressUpdated;
+        _factoryFacade.FactoryModel.BuildProgressUpdated += OnBuildProgressUpdated;
 
         _progressImage.fillAmount = 0;
         _queueText.text = string.Empty;
@@ -57,19 +57,19 @@ public class BuildUnitButton : MonoBehaviour
 
     private void ShowUnitsInQueueCount()
     {
-        var unitsCountInQueue = _factoryModel.GetUnitsCountInBuildQueue(_buildableUnitType);
+        var unitsCountInQueue = _factoryFacade.FactoryModel.GetUnitsCountInBuildQueue(_buildableUnitType);
         _queueText.text = unitsCountInQueue <= 0 ? string.Empty : unitsCountInQueue.ToString();
     }
 
     private void OnClick()
     {
-        _factoryModel.AddUnitRequest(_buildableUnitType);
+        _factoryFacade.TryBuildUnit(_buildableUnitType);
 
         ShowUnitsInQueueCount();
     }
 
     private void Stop()
     {
-        _factoryModel.BuildProgressUpdated -= OnBuildProgressUpdated;
+        _factoryFacade.FactoryModel.BuildProgressUpdated -= OnBuildProgressUpdated;
     }
 }

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using UnityEngine;
 
 public class ImmediateBulletInitializer : BulletInitializerBase
 {
-    // Start is called before the first frame update
     public float fadeOutSpeed = 0.02f;
     private float alpha = 0.6f;
     private LineRenderer _lineRenderer;

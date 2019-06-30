@@ -73,6 +73,7 @@ MonoBehaviour:
     _movingAngle: 50
   _turretSettings:
     turnSpeedPerSecond: 100
+    freezeRotationAfterDestroy: 1
     turret: {fileID: 4638403799570326}
     weapons:
     - animator: {fileID: 95559650772076926}

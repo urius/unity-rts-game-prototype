@@ -20,7 +20,7 @@ public class UnitModel
     public readonly int maxHp;
     public readonly int detectRadius;
 
-    public bool isAttacikng = false;
+    public bool isAttacking = false;
     public bool isLastShotHitTarget = false;
     public UnitModel attackTarget = null;
     private Vector3 _destinationPoint;

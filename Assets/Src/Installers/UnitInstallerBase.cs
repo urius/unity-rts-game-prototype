@@ -28,8 +28,12 @@ public abstract class UnitInstallerBase : MonoInstaller
         var hpBar = transform.GetComponentInChildren<StripeBar>();
         Container.BindInstance(hpBar).WhenInjectedInto<UnitDisplayHpController>();
 
+
+        InstallExtraBindings();
+        
         Container.QueueForInject(model);
     }
 
     protected abstract UnitModel CreateUnitModel();
+    protected abstract void InstallExtraBindings();
 }

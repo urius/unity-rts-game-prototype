@@ -23,21 +23,6 @@ public class UnitFactoryController : ITickable
         _settings = settings;
     }
 
-    [Inject]
-    public void Construct()
-    {
-        _factoryModel.BuildUnitRequested += AddToBuildQueue;
-    }
-
-    private void AddToBuildQueue(MobileUnitType unitType)
-    {
-        var buildingUnitConfig = _unitsConfig.GetConfigByType(unitType);
-        if (_gameData.TryChangePlayerMoney(_unitModel.teamId, -buildingUnitConfig.cost))
-        {
-            _factoryModel.AddToBuildQueue(unitType);
-        }
-    }
-
     public void Tick()
     {
         if (!_unitModel.isAlive)

@@ -30,10 +30,6 @@ public class UnitTurretController : IInitializable, ILateTickable
     private UnitModel _target => _model.attackTarget;
     private Quaternion _lastRotation;
 
-
-    private bool _isLastShotHitTarget = false;
-    private bool _isAttacking = false;
-
     public UnitTurretController(Settings settings)
     {
         _settings = settings;
@@ -51,30 +47,30 @@ public class UnitTurretController : IInitializable, ILateTickable
         }
     }
 
-    public bool isAttacking => _isAttacking;
-    public bool isLastShotHitTarget => _isLastShotHitTarget;
     public bool canAttack => _target != null && _target.isAlive
         && (Vector3.Distance(_target.transform.position, _model.transform.position) <= _model.detectRadius);
 
     public void LateTick()
     {
-        if (!_model.isAlive)
-        {
-            return;
-        }
-
         var turret = _settings.turret;
-        if (_target != null && _target.isAlive)
+        if (_model.isAlive)
         {
-            var targetLookAtPoint = _target.transform.position;
-            targetLookAtPoint.y = turret.transform.position.y;
+            if (_target != null && _target.isAlive)
+            {
+                var targetLookAtPoint = _target.transform.position;
+                targetLookAtPoint.y = turret.transform.position.y;
 
-            var targetRotation = Quaternion.LookRotation(targetLookAtPoint - turret.transform.position, turret.transform.up);
-            turret.transform.rotation = Quaternion.RotateTowards(_lastRotation, targetRotation, turnSpeed);
+                var targetRotation = Quaternion.LookRotation(targetLookAtPoint - turret.transform.position, turret.transform.up);
+                turret.transform.rotation = Quaternion.RotateTowards(_lastRotation, targetRotation, turnSpeed);
+            }
+            else
+            {
+                turret.transform.rotation = Quaternion.RotateTowards(_lastRotation, turret.transform.rotation, turnSpeed);
+            }
         }
-        else
+        else if (_settings.freezeRotationAfterDestroy)
         {
-            turret.transform.rotation = Quaternion.RotateTowards(_lastRotation, turret.transform.rotation, turnSpeed);
+            turret.transform.rotation = _lastRotation;
         }
 
         _lastRotation = turret.transform.rotation;
@@ -88,7 +84,7 @@ public class UnitTurretController : IInitializable, ILateTickable
         {
             if (_model.isAlive && canAttack)
             {
-                _isAttacking = true;
+                _model.isAttacking = true;
                 if (needToDelay)
                 {
                     needToDelay = false;
@@ -111,7 +107,7 @@ public class UnitTurretController : IInitializable, ILateTickable
             }
             else
             {
-                _isAttacking = false;
+                _model.isAttacking = false;
                 needToDelay = true;
             }
             yield return new WaitForFixedUpdate();
@@ -123,13 +119,14 @@ public class UnitTurretController : IInitializable, ILateTickable
         var bullet = _container.InstantiatePrefab(weapon.BulletPrefab);
         var bulletFireComponent = bullet.GetComponent<IBulletInitializer>();
 
-        _isLastShotHitTarget = await bulletFireComponent.Initialize(_model, _model.attackTarget, weapon.firePoint.position, fireDirection, weapon.damagePerShot) != null;
+        _model.isLastShotHitTarget = await bulletFireComponent.Initialize(_model, _model.attackTarget, weapon.firePoint.position, fireDirection, weapon.damagePerShot) != null;
     }
 
     [Serializable]
     public class Settings
     {
         public int turnSpeedPerSecond = 100;
+        public bool freezeRotationAfterDestroy = false;
         public Transform turret;
         public WeaponConfig[] weapons;
     }

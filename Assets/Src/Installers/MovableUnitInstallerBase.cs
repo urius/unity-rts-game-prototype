@@ -13,10 +13,8 @@ public abstract class MovableUnitInstallerBase : UnitInstallerBase
     [SerializeField]
     private UnitTurretController.Settings _turretSettings;
 
-    public override void InstallBindings()
+    protected override void InstallExtraBindings()
     {
-        base.InstallBindings();
-
         Container.BindInstance(gameObject.GetComponent<Animator>()).AsSingle();
         Container.BindInstance(gameObject.GetComponent<SelectableDestroyableView>()).AsSingle();
         Container.BindInstance(gameObject.GetComponent<NavMeshAgent>()).AsSingle();
@@ -26,7 +24,7 @@ public abstract class MovableUnitInstallerBase : UnitInstallerBase
         Container.BindInterfacesAndSelfTo<UnitTurretController>().AsSingle().WithArguments(_turretSettings).NonLazy();
 
 
-        if (Container.Resolve<UnitModel>().teamId == _gameData.UserTeam)
+        if (team == _gameData.UserTeam)
         {
             Container.BindInterfacesAndSelfTo<UnitMoveByUserController>().AsSingle().NonLazy();
         }
