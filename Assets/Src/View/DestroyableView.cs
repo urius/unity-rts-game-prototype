@@ -8,12 +8,13 @@ public class DestroyableView : MonoBehaviour
     
     [SerializeField]
     private GameObject _explosionPrefab;
-    [Inject]
-    private IMoveAnimationAdapter _animationAdapter;
+    [SerializeField]
+    private Animator _animator;
+    [SerializeField]
+    private string _destroyAnimationName;
     
 
-    [Inject]
-    public virtual void Construct()
+    public void Start()
     {
         _model.UnitDestroyed += OnUnitDestroyed;
     }
@@ -24,7 +25,7 @@ public class DestroyableView : MonoBehaviour
 
         var explosion = GameObject.Instantiate<GameObject>(_explosionPrefab, _model.position, _model.rotation);
 
-        _animationAdapter.Dead();
+        _animator.SetBool(_destroyAnimationName, true);
     }
 
     protected virtual void Stop()

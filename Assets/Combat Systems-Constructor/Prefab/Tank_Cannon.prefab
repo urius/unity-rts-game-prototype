@@ -10,12 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4143857580379300}
   - component: {fileID: 4505405576231088080}
-  - component: {fileID: 8828888872701342854}
+  - component: {fileID: 3067829069394255816}
   - component: {fileID: 2494363441629484416}
   - component: {fileID: 95861066949347596}
   - component: {fileID: 7889401197170997438}
   - component: {fileID: 6818003226478688670}
   - component: {fileID: 772181830897325135}
+  - component: {fileID: 3352991260676513668}
+  - component: {fileID: 273808380984517464}
   m_Layer: 0
   m_Name: Tank_Cannon
   m_TagString: Unit
@@ -52,11 +54,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 8828888872701342854}
+  - {fileID: 3067829069394255816}
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
---- !u!114 &8828888872701342854
+--- !u!114 &3067829069394255816
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -65,7 +67,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1003504808538462}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed3291cd5d2df44a4894272a480b834b, type: 3}
+  m_Script: {fileID: 11500000, guid: bb94a26e5244245afa5650c178e12243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
@@ -83,6 +85,7 @@ MonoBehaviour:
       reloadTimeSeconds: 2
       delayBeforeFirstShotSeconds: 0
       damagePerShot: 30
+  _unitType: 1
 --- !u!114 &2494363441629484416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,13 +164,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac6328c41b9d4dc6b63c8375ea2e37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stopAnimSpeed: 0.03
+  _stopAnimDistance: 2
+  _animationNames:
+  - state: 1
+    animationName: Idle
+  - state: 3
+    animationName: MoveBack
+  - state: 2
+    animationName: MoveForward
+  - state: 5
+    animationName: MoveForward
+  - state: 4
+    animationName: MoveForward
+--- !u!114 &3352991260676513668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003504808538462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725e3bad33dbc4c86bf613075389bc08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _explosionPrefab: {fileID: 6819721490205428198, guid: 04822676f39a9402dbef27068015d90e,
     type: 3}
+  _animator: {fileID: 95861066949347596}
+  _destroyAnimationName: Dead1
+--- !u!114 &273808380984517464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003504808538462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4a670c49d43402b8923b86929371eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _isSelected: 0
   _selection: {fileID: 558593620445992139}
   _selectionArea: {fileID: 6818003226478688670}
-  _stopAnimSpeed: 0.03
-  _stopAnimDistance: 2
 --- !u!1 &1099529810087280
 GameObject:
   m_ObjectHideFlags: 0

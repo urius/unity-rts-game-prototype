@@ -15,10 +15,6 @@ public class UnitFactoryInstaller : UnitInstallerBase
         Container.BindInstance<UnitFactoryModel>(new UnitFactoryModel()).AsSingle();
 
         Container.BindInterfacesAndSelfTo<UnitFactoryController>().AsSingle().WithArguments(_unitFactoryControllerSettings);
-
-        Container.Bind<IMoveAnimationAdapter>()
-            .To<RobotsFactoryAnimationAdapter>()
-            .AsSingle();
     }
 
     protected override UnitModel CreateUnitModel()

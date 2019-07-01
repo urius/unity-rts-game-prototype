@@ -1210,12 +1210,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4347872983944570}
   - component: {fileID: 179895614946516063}
-  - component: {fileID: 5835295510179776430}
+  - component: {fileID: 5757186623548334261}
   - component: {fileID: -6573091928839366427}
   - component: {fileID: 95506970698132046}
   - component: {fileID: 8488632152193238384}
   - component: {fileID: 6409257813864779590}
   - component: {fileID: 1853221632684854779}
+  - component: {fileID: 499248755266828046}
+  - component: {fileID: 6033570446234617592}
   m_Layer: 0
   m_Name: ACS17_LaserGun
   m_TagString: Untagged
@@ -1252,11 +1254,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 5835295510179776430}
+  - {fileID: 5757186623548334261}
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
---- !u!114 &5835295510179776430
+--- !u!114 &5757186623548334261
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1265,7 +1267,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1193977977764896}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e0084e20e02492c9a5a4eefe18cf54, type: 3}
+  m_Script: {fileID: 11500000, guid: bb94a26e5244245afa5650c178e12243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
@@ -1273,6 +1275,7 @@ MonoBehaviour:
     _movingAngle: 30
   _turretSettings:
     turnSpeedPerSecond: 150
+    freezeRotationAfterDestroy: 0
     turret: {fileID: 4636668745003868}
     weapons:
     - animator: {fileID: 95824026764245096}
@@ -1289,6 +1292,7 @@ MonoBehaviour:
       reloadTimeSeconds: 0.4
       delayBeforeFirstShotSeconds: 0.2
       damagePerShot: 10
+  _unitType: 2
 --- !u!114 &-6573091928839366427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1367,13 +1371,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac6328c41b9d4dc6b63c8375ea2e37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stopAnimSpeed: 0.03
+  _stopAnimDistance: 2
+  _animationNames:
+  - state: 1
+    animationName: ACS_Idle
+  - state: 3
+    animationName: ACS_WalkBack
+  - state: 2
+    animationName: ACS_WalkForwad
+  - state: 5
+    animationName: ACS_TurnLeft
+  - state: 4
+    animationName: ACS_TurnRight
+--- !u!114 &499248755266828046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193977977764896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725e3bad33dbc4c86bf613075389bc08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _explosionPrefab: {fileID: 6819721490205428198, guid: 04822676f39a9402dbef27068015d90e,
     type: 3}
+  _animator: {fileID: 95506970698132046}
+  _destroyAnimationName: ACS_Dead3
+--- !u!114 &6033570446234617592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193977977764896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4a670c49d43402b8923b86929371eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _isSelected: 0
   _selection: {fileID: 8956601932622178421}
   _selectionArea: {fileID: 6409257813864779590}
-  _stopAnimSpeed: 0.03
-  _stopAnimDistance: 2
 --- !u!1 &1196869556722886
 GameObject:
   m_ObjectHideFlags: 0
@@ -6147,12 +6188,12 @@ PrefabInstance:
     - target: {fileID: 4459191794109603602, guid: 9cc7e94e2a16e4ee98fc8ddb57e7ea00,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4459191794109603602, guid: 9cc7e94e2a16e4ee98fc8ddb57e7ea00,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cc7e94e2a16e4ee98fc8ddb57e7ea00, type: 3}

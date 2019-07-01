@@ -7,7 +7,7 @@ public class UnitMoveByUserController : IInitializable, IDisposable
     [Inject]
     private UnitModel _model;
     [Inject]
-    private SelectableDestroyableView _view;
+    private SelectableView _view;
 
     public void Initialize()
     {

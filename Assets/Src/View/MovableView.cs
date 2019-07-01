@@ -3,46 +3,64 @@ using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
-public class SelectableDestroyableView : DestroyableView
+public enum MoveStates
 {
-    public event Action MouseDown = delegate { };
-    public event Action MouseUp = delegate { };
+    Undefined,
+    Idle,
+    MovingForward,
+    MovingBack,
+    TurningRight,
+    TurningLeft,
+}
+
+
+public class MovableView : MonoBehaviour
+{
+    [Serializable]
+    private class AnimationSetting
+    {
+        public MoveStates state;
+        public string animationName;
+    }
 
     [Inject]
     private UnitModel _model;
     [Inject]
-    private IMoveAnimationAdapter _animationAdapter;
+    private Animator _animator;
 
-    [SerializeField]
-    private bool _isSelected = false;
-    [SerializeField]
-    private GameObject _selection;
 
-    [SerializeField]
-    private Collider _selectionArea;
     [SerializeField]
     private float _stopAnimSpeed = 0.03f;
     [SerializeField]
     private float _stopAnimDistance = 2f;
+    [SerializeField]
+    private AnimationSetting[] _animationNames = new AnimationSetting[5];
 
 
     private Vector3 _lastPosition;
     private Quaternion _lastRotation;
     private NavMeshAgent _navMeshAgent;
+    private MoveStates _currentState = MoveStates.Undefined;
 
-
-    public override void Construct()
+    [Inject]
+    public void Construct()
     {
-        base.Construct();
-
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _selection.SetActive(_isSelected);
 
         _lastPosition = transform.position;
         _lastRotation = transform.rotation;
 
-        _model.SelectionChanged += OnSelectionChanged;
         _model.UnitDestroyed += OnUnitDestroyed;
+    }
+
+    private void ChangeAnimationState(MoveStates moveState)
+    {
+        if (_currentState != moveState)
+        {
+            _currentState = moveState;
+            var animationName = Array.Find(_animationNames, a => a.state == _currentState).animationName;
+            _animator.SetBool(animationName, true);
+        }
     }
 
     private void OnUnitDestroyed()
@@ -50,12 +68,8 @@ public class SelectableDestroyableView : DestroyableView
         enabled = false;
     }
 
-    override protected void Stop()
+    private void Stop()
     {
-        base.Stop();
-
-        _selection.SetActive(false);
-        _model.SelectionChanged -= OnSelectionChanged;
         _model.UnitDestroyed -= OnUnitDestroyed;
     }
 
@@ -71,48 +85,19 @@ public class SelectableDestroyableView : DestroyableView
         var lastPathPoint = _path[_path.Length - 1];
         if (deltaPos > _stopAnimSpeed && Vector3.Distance(transform.position, lastPathPoint) > _stopAnimDistance)
         {
-            _animationAdapter.ChangeMoveState(MoveStates.MovingForward);
+            ChangeAnimationState(MoveStates.MovingForward);
         }
         else if (deltaRot > 0)
         {
             var isRightDirection = Vector3.Cross(_lastRotation * transform.forward, transform.rotation * transform.forward).y > 0;
-            _animationAdapter.ChangeMoveState(isRightDirection ? MoveStates.TurningRight : MoveStates.TurningLeft);
+            ChangeAnimationState(isRightDirection ? MoveStates.TurningRight : MoveStates.TurningLeft);
         }
         else
         {
-            _animationAdapter.ChangeMoveState(MoveStates.Idle);
+            ChangeAnimationState(MoveStates.Idle);
         }
 
         _lastPosition = transform.position;
         _lastRotation = transform.rotation;
-    }
-
-    void OnMouseDown()
-    {
-        if (isActiveAndEnabled)
-        {
-            var caneraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (_selectionArea.Raycast(caneraRay, out var _, int.MaxValue))
-            {
-                MouseDown();
-            }
-        }
-    }
-
-    void OnMouseUp()
-    {
-        MouseUp();
-    }
-
-    // Editor only!
-    void OnValidate()
-    {
-        _selection.SetActive(_isSelected);
-    }
-
-    private void OnSelectionChanged(bool isSelected)
-    {
-        _isSelected = isSelected;
-        _selection.SetActive(isSelected);
     }
 }

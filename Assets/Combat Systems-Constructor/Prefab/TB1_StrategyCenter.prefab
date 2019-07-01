@@ -6397,6 +6397,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _explosionPrefab: {fileID: 6819721490205428198, guid: 04822676f39a9402dbef27068015d90e,
     type: 3}
+  _animator: {fileID: 95569318056694170}
+  _destroyAnimationName: Destroy2
 --- !u!1 &1963806009085186
 GameObject:
   m_ObjectHideFlags: 0
