@@ -40,7 +40,7 @@ public class UnitFactoryController : ITickable
                 var spawnPointTransform = _settings.spawnPoint.transform;
                 var unit = _unitFactory.Create(buildingUnitConfig.typeId, _unitModel.teamId, spawnPointTransform);
 
-                var spawnTargetPoint = spawnPointTransform.position + (_factoryModel.GetUnitsCountInBuildQueue() + 1) * (spawnPointTransform.position - _unitModel.transform.position);
+                var spawnTargetPoint = spawnPointTransform.position + (_factoryModel.GetUnitsCountInBuildQueue() + 1) * (spawnPointTransform.position - _unitModel.position);
                 unit.UnitModel.destinationPoint = spawnTargetPoint;
             }
         }

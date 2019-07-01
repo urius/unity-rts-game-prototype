@@ -22,7 +22,7 @@ public class DestroyableView : MonoBehaviour
     {
         _model.UnitDestroyed -= OnUnitDestroyed;
 
-        var explosion = GameObject.Instantiate<GameObject>(_explosionPrefab, _model.transform.position, _model.transform.rotation);
+        var explosion = GameObject.Instantiate<GameObject>(_explosionPrefab, _model.position, _model.rotation);
 
         _animationAdapter.Dead();
     }

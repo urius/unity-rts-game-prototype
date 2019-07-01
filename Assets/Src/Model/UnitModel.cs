@@ -4,6 +4,9 @@ using Zenject;
 
 public class UnitModel
 {
+    [Inject]
+    private readonly Transform _transform;
+
     private static int lastId = 0;
     private int id = lastId;
     public event Action<int> HealthUpdated = delegate { };
@@ -12,8 +15,6 @@ public class UnitModel
     public event Action<bool> SelectionChanged = delegate { };
 
 
-    [Inject]
-    public readonly Transform transform;
 
     public readonly int teamId;
     public readonly int cost;
@@ -39,6 +40,9 @@ public class UnitModel
         _isSelected = false;
     }
 
+    public Vector3 position => _transform.position;
+    public Vector3 forward => _transform.forward;
+    public Quaternion rotation => _transform.rotation;
     public bool isAlive => hp > 0;
     public Vector3 destinationPoint
     {

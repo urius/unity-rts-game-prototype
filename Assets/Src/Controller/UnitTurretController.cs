@@ -48,7 +48,7 @@ public class UnitTurretController : IInitializable, ILateTickable
     }
 
     public bool canAttack => _target != null && _target.isAlive
-        && (Vector3.Distance(_target.transform.position, _model.transform.position) <= _model.detectRadius);
+        && (Vector3.Distance(_target.position, _model.position) <= _model.detectRadius);
 
     public void LateTick()
     {
@@ -57,7 +57,7 @@ public class UnitTurretController : IInitializable, ILateTickable
         {
             if (_target != null && _target.isAlive)
             {
-                var targetLookAtPoint = _target.transform.position;
+                var targetLookAtPoint = _target.position;
                 targetLookAtPoint.y = turret.transform.position.y;
 
                 var targetRotation = Quaternion.LookRotation(targetLookAtPoint - turret.transform.position, turret.transform.up);
@@ -91,11 +91,11 @@ public class UnitTurretController : IInitializable, ILateTickable
                     yield return new WaitForSeconds(weapon.delayBeforeFirstShotSeconds);
                 }
 
-                var targetLookAtPoint = _target.transform.position;
+                var targetLookAtPoint = _target.position;
                 targetLookAtPoint.y = turret.transform.position.y;
 
-                var fireDirection = _target.transform.position - turret.transform.position;
-                var projectedfireDirection = Vector3.ProjectOnPlane(fireDirection, _model.transform.up);
+                var fireDirection = _target.position - turret.transform.position;
+                var projectedfireDirection = Vector3.ProjectOnPlane(fireDirection, Vector3.up);
 
                 if (Quaternion.Angle(turret.rotation, Quaternion.LookRotation(projectedfireDirection, turret.transform.up)) <= 0.5f)
                 {

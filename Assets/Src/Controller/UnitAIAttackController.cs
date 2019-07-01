@@ -37,16 +37,15 @@ public class UnitAIAttackController : IInitializable, IDisposable
 
     private UnitModel GetClosestAttackableEnemy(IEnumerable<UnitModel> unitsToIterate)
     {
-        var transform = _model.transform;
         UnitModel closest = null;
         foreach (var unit in unitsToIterate)
         {
             if (_model.teamId != unit.teamId)
             {
-                var distance = Vector3.Distance(transform.position, unit.transform.position);
+                var distance = Vector3.Distance(_model.position, unit.position);
                 if (distance <= _model.detectRadius)
                 {
-                    if (closest == null || distance < Vector3.Distance(transform.position, closest.transform.position))
+                    if (closest == null || distance < Vector3.Distance(_model.position, closest.position))
                     {
                         closest = unit;
                     }

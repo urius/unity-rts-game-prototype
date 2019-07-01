@@ -38,10 +38,11 @@ public class SelectableDestroyableView : DestroyableView
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _selection.SetActive(_isSelected);
 
-        _lastPosition = _model.transform.position;
-        _lastRotation = _model.transform.rotation;
+        _lastPosition = transform.position;
+        _lastRotation = transform.rotation;
 
         _model.SelectionChanged += OnSelectionChanged;
+        _model.UnitDestroyed += OnUnitDestroyed;
     }
 
     private void OnUnitDestroyed()
@@ -55,6 +56,7 @@ public class SelectableDestroyableView : DestroyableView
 
         _selection.SetActive(false);
         _model.SelectionChanged -= OnSelectionChanged;
+        _model.UnitDestroyed -= OnUnitDestroyed;
     }
 
 
@@ -64,7 +66,6 @@ public class SelectableDestroyableView : DestroyableView
 
     void Update()
     {
-        var transform = _model.transform;
         var deltaPos = Vector3.Distance(_lastPosition, transform.position);
         var deltaRot = Quaternion.Angle(_lastRotation, transform.rotation);
         var lastPathPoint = _path[_path.Length - 1];

@@ -62,15 +62,15 @@ public class UnitNavMeshMoveController : IInitializable, ITickable, IDisposable
         //Debug.DrawLine(gameObject.transform.position, gameObject.transform.position + _agent.desiredVelocity, Color.red);
         //Debug.DrawLine(_agent.pathEndPosition, _agent.pathEndPosition + transform.up * 10, Color.magenta);
         //Debug.DrawLine(gameObject.transform.position, gameObject.transform.position + transform.up * 10, Color.yellow);
-        var firstPathPoint = _model.transform.position;
-        var lastPathPoint = _model.transform.position;
+        var firstPathPoint = _model.position;
+        var lastPathPoint = _model.position;
         if (_agent.path != null && _agent.path.corners.Length > 0)
         {
             firstPathPoint = _agent.path.corners[0];
             lastPathPoint = _agent.path.corners[_agent.path.corners.Length - 1];
         }
 
-        var angle = Vector3.Angle(_model.transform.forward, _agent.desiredVelocity);
+        var angle = Vector3.Angle(_model.forward, _agent.desiredVelocity);
         if (angle > _settings.movingAngle)
         {
             _agent.velocity = Vector3.Lerp(_agent.velocity, Vector3.zero, 0.2f);

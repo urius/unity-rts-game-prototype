@@ -39,28 +39,27 @@ public class UnitAIMoveController : IInitializable, IDisposable
 
     private Vector2 GetDestinationPoint(UnitModel target)
     {
-        var transform = _model.transform;
-        var moveToPosition = transform.position;
+        var moveToPosition = _model.position;
         if (target != null && target.hp > 0)
         {
-            var distanceToClosest = Vector3.Distance(target.transform.position, transform.position);
+            var distanceToClosest = Vector3.Distance(target.position, _model.position);
 
             if (target.detectRadius < _model.detectRadius)
             {
                 //go to the middle between detect radiuses
-                var vectorFromEnemyToMe = transform.position - target.transform.position;
+                var vectorFromEnemyToMe = _model.position - target.position;
                 var distanceToCome = target.detectRadius + (_model.detectRadius - target.detectRadius) / 2;
 
-                moveToPosition = target.transform.position + Vector3.ClampMagnitude(vectorFromEnemyToMe, distanceToCome);
+                moveToPosition = target.position + Vector3.ClampMagnitude(vectorFromEnemyToMe, distanceToCome);
 
                 //Debug.DrawLine(transform.position + transform.up, moveToPosition, Color.green, 1f);
             }
             else //if (distanceToClosest > _unitAvatar.detectRadius)
             {
                 //need to come closer
-                var vectorFromEnemyToMe = transform.position - target.transform.position;
+                var vectorFromEnemyToMe = _model.position - target.position;
                 var distanceToCome = _model.detectRadius / 2;
-                moveToPosition = target.transform.position + Vector3.ClampMagnitude(vectorFromEnemyToMe, distanceToCome);
+                moveToPosition = target.position + Vector3.ClampMagnitude(vectorFromEnemyToMe, distanceToCome);
 
                 //Debug.DrawLine(transform.position, moveToPosition, Color.red, 1f);
             }
@@ -75,7 +74,7 @@ public class UnitAIMoveController : IInitializable, IDisposable
                 //move out from danger zone
                 foreach (var targettingEnemy in extraEnemiesTargetedToMe)
                 {
-                    var vectorFromEnemyToMe = targettingEnemy.transform.position - transform.position;
+                    var vectorFromEnemyToMe = targettingEnemy.position - _model.position;
                     var distanceToComeOut = targettingEnemy.detectRadius - vectorFromEnemyToMe.magnitude;
                     if (distanceToComeOut > 0)
                     {
@@ -84,11 +83,11 @@ public class UnitAIMoveController : IInitializable, IDisposable
                 }
             }
 
-            if (Vector3.Distance(moveToPosition, transform.position) < 2 && _model.isAttacking && _model.isLastShotHitTarget == false)
+            if (Vector3.Distance(moveToPosition, _model.position) < 2 && _model.isAttacking && _model.isLastShotHitTarget == false)
             {
-                var vectorFromEnemyToMe = transform.position - target.transform.position;
+                var vectorFromEnemyToMe = _model.position - target.position;
                 var rotatedVectorFromEnemyToMe = Quaternion.Euler(0, 90, 0) * vectorFromEnemyToMe;
-                moveToPosition = target.transform.position + rotatedVectorFromEnemyToMe;
+                moveToPosition = target.position + rotatedVectorFromEnemyToMe;
             }
         }
 
@@ -97,14 +96,13 @@ public class UnitAIMoveController : IInitializable, IDisposable
 
     private UnitModel GetClosestEnemy(IEnumerable<UnitModel> unitsToIterate)
     {
-        var transform = _model.transform;
         UnitModel closest = null;
         foreach (var unit in unitsToIterate)
         {
             if (_model.teamId != unit.teamId)
             {
-                var distance = Vector3.Distance(transform.position, unit.transform.position);
-                if (closest == null || distance < Vector3.Distance(transform.position, closest.transform.position))
+                var distance = Vector3.Distance(_model.position, unit.position);
+                if (closest == null || distance < Vector3.Distance(_model.position, closest.position))
                 {
                     closest = unit;
                 }

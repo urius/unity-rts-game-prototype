@@ -6249,11 +6249,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4971284345159034}
   - component: {fileID: 2612721482459645800}
+  - component: {fileID: 8277541474048272118}
   - component: {fileID: 111711456626673518}
   - component: {fileID: 95569318056694170}
   - component: {fileID: 488238354}
   - component: {fileID: 4348491406904607451}
-  - component: {fileID: 8277541474048272118}
   - component: {fileID: 5006865869063751491}
   m_Layer: 0
   m_Name: TB1_StrategyCenter
@@ -6306,6 +6306,23 @@ MonoBehaviour:
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
+--- !u!114 &8277541474048272118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960260352046228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb71c76584df48beb224a84729a09b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  _hp: 400
+  _cost: 0
+  _unitFactoryControllerSettings:
+    spawnPoint: {fileID: 3950688455274749227}
 --- !u!114 &111711456626673518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6366,23 +6383,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 10, z: 0}
   m_TimeToStationary: 0.5
---- !u!114 &8277541474048272118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1960260352046228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bb71c76584df48beb224a84729a09b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 0
-  _hp: 400
-  _cost: 0
-  _unitFactoryControllerSettings:
-    spawnPoint: {fileID: 3950688455274749227}
 --- !u!114 &5006865869063751491
 MonoBehaviour:
   m_ObjectHideFlags: 0

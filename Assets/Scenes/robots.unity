@@ -767,11 +767,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8828888872701342854, guid: 23037ac2bd4049c4f98e969f83a64c42,
-        type: 3}
-      propertyPath: _turretSettings.turnSpeedPerSecond
-      value: 100
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 364926469946901690, guid: 23037ac2bd4049c4f98e969f83a64c42, type: 3}
     - {fileID: 1471444339520886783, guid: 23037ac2bd4049c4f98e969f83a64c42, type: 3}
