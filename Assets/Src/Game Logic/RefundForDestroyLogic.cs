@@ -15,7 +15,10 @@ public class RefundForDestroyLogic : MonoBehaviour
 
     private void OnUnitDestroyedBy(UnitDestroyedBySignal signal)
     {
-        _gameData.TryChangePlayerMoney(signal.striker.teamId, signal.target.cost / 2);
+        if (signal.striker.teamId != signal.hitUnit.teamId)
+        {
+            _gameData.TryChangePlayerMoney(signal.striker.teamId, signal.hitUnit.cost / 2);
+        }
     }
 
     void Stop()
