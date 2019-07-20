@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using RSG;
 using UnityEngine;
 
 public class ImmediateBulletInitializer : BulletInitializerBase
@@ -13,7 +13,7 @@ public class ImmediateBulletInitializer : BulletInitializerBase
     private Vector3 from;
     private Vector3 direction;
     private int damage;
-    private TaskCompletionSource<UnitModel> _hitTaskCompletionSource;
+    private Promise<UnitModel> _hitPromise;
 
     void Awake()
     {
@@ -34,16 +34,10 @@ public class ImmediateBulletInitializer : BulletInitializerBase
             if (unit != null)
             {
                 hitPoint = unit.gameObject.GetComponent<Collider>().bounds.center;
-                unit.UnitModel.DoDamage(damage);
                 if (unit.UnitModel == target)
                 {
-                    _hitTaskCompletionSource.TrySetResult(unit.UnitModel);
+                    _hitPromise.Resolve(unit.UnitModel);
                 }
-            }
-
-            if (_hitTaskCompletionSource.Task.IsCompleted == false)
-            {
-                _hitTaskCompletionSource.TrySetResult(null);
             }
 
             _lineRenderer.SetPositions(new Vector3[] {
@@ -57,21 +51,21 @@ public class ImmediateBulletInitializer : BulletInitializerBase
         }
         else
         {
-            _hitTaskCompletionSource.TrySetResult(null);
+            _hitPromise.Resolve(null);
 
             Destroy(gameObject);
         }
     }
 
-    protected override Task<UnitModel> InitializeInternal(UnitModel striker, UnitModel target, Vector3 from, Vector3 direction, int damage)
+    protected override IPromise<UnitModel> InitializeInternal(UnitModel striker, UnitModel target, Vector3 from, Vector3 direction, int damage)
     {
         this.target = target;
         this.from = from;
         this.direction = direction;
         this.damage = damage;
 
-        _hitTaskCompletionSource = new TaskCompletionSource<UnitModel>();
-        return _hitTaskCompletionSource.Task;
+        _hitPromise = new Promise<UnitModel>();
+        return _hitPromise;
     }
 
     // Update is called once per frame

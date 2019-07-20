@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using RSG;
 using UnityEngine;
 using Zenject;
 
@@ -6,15 +6,27 @@ public abstract class BulletInitializerBase : MonoBehaviour, IBulletInitializer
 {
     [Inject]
     private SignalBus _signalBus;
-    public async Task<UnitModel> Initialize(UnitModel striker, UnitModel target, Vector3 from, Vector3 direction, int damage)
+    public IPromise<UnitModel> Initialize(UnitModel striker, UnitModel target, Vector3 from, Vector3 direction, int damage)
     {
-        var initialTargetHp = target.hp;
-        var hitUnit = await InitializeInternal(striker, target, from, direction, damage);
-        if (hitUnit != null && initialTargetHp > 0 && target == hitUnit && hitUnit.hp <= 0)
+        return InitializeInternal(striker, target, from, direction, damage)
+                                .Then(hitUnit => ProcessHit(hitUnit, striker, damage));
+    }
+
+    private UnitModel ProcessHit(UnitModel hitUnit, UnitModel striker, int damage)
+    {
+        if (hitUnit != null)
         {
-            _signalBus.Fire(new UnitDestroyedBySignal(hitUnit, striker));
+            if (hitUnit.hp > 0)
+            {
+                hitUnit.DoDamage(damage);
+                if (hitUnit.hp <= 0)
+                {
+                    _signalBus.Fire(new UnitDestroyedBySignal(hitUnit, striker));
+                }
+            }
         }
+
         return hitUnit;
     }
-    protected abstract Task<UnitModel> InitializeInternal(UnitModel striker, UnitModel target, Vector3 from, Vector3 direction, int damage);
+    protected abstract IPromise<UnitModel> InitializeInternal(UnitModel striker, UnitModel target, Vector3 from, Vector3 direction, int damage);
 }

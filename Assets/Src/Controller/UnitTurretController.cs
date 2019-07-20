@@ -114,12 +114,13 @@ public class UnitTurretController : IInitializable, ILateTickable
         }
     }
 
-    private async void Fire(WeaponConfig weapon, Vector3 fireDirection)
+    private void Fire(WeaponConfig weapon, Vector3 fireDirection)
     {
         var bullet = _container.InstantiatePrefab(weapon.BulletPrefab);
         var bulletFireComponent = bullet.GetComponent<IBulletInitializer>();
 
-        _model.isLastShotHitTarget = await bulletFireComponent.Initialize(_model, _model.attackTarget, weapon.firePoint.position, fireDirection, weapon.damagePerShot) != null;
+        bulletFireComponent.Initialize(_model, _model.attackTarget, weapon.firePoint.position, fireDirection, weapon.damagePerShot)
+                .Then(hitUnit => _model.isLastShotHitTarget = hitUnit == _model.attackTarget);
     }
 
     [Serializable]
