@@ -1,7 +1,6 @@
-﻿using RSG;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ImmediateBulletInitializer : BulletInitializerBase
+public class ImmediateBullet : BulletBase
 {
     public float fadeOutSpeed = 0.02f;
     private float alpha = 0.6f;
@@ -9,17 +8,12 @@ public class ImmediateBulletInitializer : BulletInitializerBase
 
     private UnityEngine.Object _sparksPrefab;
 
-    private UnitModel target;
-    private Vector3 from;
-    private Vector3 direction;
-    private int damage;
-    private Promise<UnitModel> _hitPromise;
-
     void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
         _sparksPrefab = Resources.Load("Sparks");
     }
+
     void Start()
     {
         StartBullet();
@@ -29,14 +23,14 @@ public class ImmediateBulletInitializer : BulletInitializerBase
     {
         if (Physics.Raycast(from, direction, out var hit))
         {
-            var unit = hit.transform.gameObject.GetComponent<UnitFacade>();
+            var unit = hit.transform.gameObject.GetComponent<UnitFacade>(); 
             var hitPoint = hit.point;
             if (unit != null)
             {
                 hitPoint = unit.gameObject.GetComponent<Collider>().bounds.center;
                 if (unit.UnitModel == target)
                 {
-                    _hitPromise.Resolve(unit.UnitModel);
+                    hitPromise.Resolve(unit.UnitModel);
                 }
             }
 
@@ -51,21 +45,10 @@ public class ImmediateBulletInitializer : BulletInitializerBase
         }
         else
         {
-            _hitPromise.Resolve(null);
+            hitPromise.Resolve(null);
 
             Destroy(gameObject);
         }
-    }
-
-    protected override IPromise<UnitModel> InitializeInternal(UnitModel striker, UnitModel target, Vector3 from, Vector3 direction, int damage)
-    {
-        this.target = target;
-        this.from = from;
-        this.direction = direction;
-        this.damage = damage;
-
-        _hitPromise = new Promise<UnitModel>();
-        return _hitPromise;
     }
 
     // Update is called once per frame

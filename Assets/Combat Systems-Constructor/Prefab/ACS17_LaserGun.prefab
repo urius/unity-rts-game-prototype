@@ -1280,14 +1280,14 @@ MonoBehaviour:
     weapons:
     - animator: {fileID: 95824026764245096}
       firePoint: {fileID: 4463146491088782}
-      BulletPrefab: {fileID: 867471586286493067, guid: 50e82471da56c4a98ac1475b969a780b,
+      BulletPrefab: {fileID: 886932171009387732, guid: 0a2d59ea1fb8d421a84534f0964fc0cc,
         type: 3}
       reloadTimeSeconds: 0.4
       delayBeforeFirstShotSeconds: 0
       damagePerShot: 10
     - animator: {fileID: 95699284664577560}
       firePoint: {fileID: 4363505606601796}
-      BulletPrefab: {fileID: 867471586286493067, guid: 50e82471da56c4a98ac1475b969a780b,
+      BulletPrefab: {fileID: 886932171009387732, guid: 0a2d59ea1fb8d421a84534f0964fc0cc,
         type: 3}
       reloadTimeSeconds: 0.4
       delayBeforeFirstShotSeconds: 0.2

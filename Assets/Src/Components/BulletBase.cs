@@ -2,15 +2,29 @@
 using UnityEngine;
 using Zenject;
 
-public abstract class BulletInitializerBase : MonoBehaviour, IBulletInitializer
+public abstract class BulletBase : MonoBehaviour, IBullet
 {
     [Inject]
     private SignalBus _signalBus;
+
+
+    protected UnitModel target;
+    protected Vector3 from;
+    protected Vector3 direction;
+    protected Promise<UnitModel> hitPromise;
+
+
     public IPromise<UnitModel> Initialize(UnitModel striker, UnitModel target, Vector3 from, Vector3 direction, int damage)
     {
-        return InitializeInternal(striker, target, from, direction, damage)
-                                .Then(hitUnit => ProcessHit(hitUnit, striker, damage));
+        this.target = target;
+        this.from = from;
+        this.direction = direction;
+
+        hitPromise = new Promise<UnitModel>();
+        return hitPromise.Then(hitUnit => ProcessHit(hitUnit, striker, damage));
     }
+
+    public IPromise<UnitModel> HitPromise => hitPromise;
 
     private UnitModel ProcessHit(UnitModel hitUnit, UnitModel striker, int damage)
     {
@@ -28,5 +42,4 @@ public abstract class BulletInitializerBase : MonoBehaviour, IBulletInitializer
 
         return hitUnit;
     }
-    protected abstract IPromise<UnitModel> InitializeInternal(UnitModel striker, UnitModel target, Vector3 from, Vector3 direction, int damage);
 }

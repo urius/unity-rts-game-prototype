@@ -17,7 +17,7 @@ public class WeaponConfig
 public class UnitTurretController : IInitializable, ILateTickable
 {
     [Inject]
-    private DiContainer _container;
+    private BulletFactory _bulletFactory;
     [Inject]
     private CoroutinesManager _coroutinesManager;
     [Inject]
@@ -116,11 +116,9 @@ public class UnitTurretController : IInitializable, ILateTickable
 
     private void Fire(WeaponConfig weapon, Vector3 fireDirection)
     {
-        var bullet = _container.InstantiatePrefab(weapon.BulletPrefab);
-        var bulletFireComponent = bullet.GetComponent<IBulletInitializer>();
-
-        bulletFireComponent.Initialize(_model, _model.attackTarget, weapon.firePoint.position, fireDirection, weapon.damagePerShot)
-                .Then(hitUnit => _model.isLastShotHitTarget = hitUnit == _model.attackTarget);
+        _bulletFactory.Create(_model, _model.attackTarget, weapon, fireDirection)
+                        .HitPromise
+                        .Then(hitUnit => _model.isLastShotHitTarget = hitUnit == _model.attackTarget);
     }
 
     [Serializable]
