@@ -24,6 +24,8 @@ public class StraightFlyBullet : BulletBase
 
         if (Vector3.Distance(from, transform.position) > _maxDistance)
         {
+            hitPromise.Resolve(null);
+            
             Destroy(gameObject);
         }
         else if (Physics.Linecast(oldPosition, transform.position, out var hit))
