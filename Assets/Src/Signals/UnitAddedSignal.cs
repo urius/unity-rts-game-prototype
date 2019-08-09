@@ -1,4 +1,4 @@
 ﻿public class UnitAddedSignal
 {
-    public UnitModel unit;
+    public UnitFacade unit;
 }

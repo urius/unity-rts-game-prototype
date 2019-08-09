@@ -12,13 +12,13 @@ public class UnitMainController : IInitializable, IDisposable
     [Inject]
     private GameObject _gameObject;
     [Inject]
-    private UnitModel _model;
+    private UnitFacade _facade;
 
     public void Initialize()
     {
-        _model.UnitDestroyed += OnUnitDestroyed;
+        _facade.UnitModel.UnitDestroyed += OnUnitDestroyed;
 
-        _signalBus.Fire(new UnitAddedSignal { unit = _model });
+        _signalBus.Fire(new UnitAddedSignal { unit = _facade });
     }
 
     private void OnUnitDestroyed()
@@ -34,6 +34,6 @@ public class UnitMainController : IInitializable, IDisposable
 
     public void Dispose()
     {
-        _model.UnitDestroyed -= OnUnitDestroyed;
+        _facade.UnitModel.UnitDestroyed -= OnUnitDestroyed;
     }
 }

@@ -1,9 +1,9 @@
 ﻿public class UnitDestroyedBySignal
 {
-    public readonly UnitModel striker;
-    public readonly UnitModel hitUnit;
+    public readonly UnitFacade striker;
+    public readonly UnitFacade hitUnit;
 
-    public UnitDestroyedBySignal(UnitModel hitUnit, UnitModel striker)
+    public UnitDestroyedBySignal(UnitFacade hitUnit, UnitFacade striker)
     {
         this.hitUnit = hitUnit;
         this.striker = striker;

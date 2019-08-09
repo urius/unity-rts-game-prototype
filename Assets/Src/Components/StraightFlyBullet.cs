@@ -25,7 +25,7 @@ public class StraightFlyBullet : BulletBase
         if (Vector3.Distance(from, transform.position) > _maxDistance)
         {
             hitPromise.Resolve(null);
-            
+
             Destroy(gameObject);
         }
         else if (Physics.Linecast(oldPosition, transform.position, out var hit))
@@ -37,7 +37,7 @@ public class StraightFlyBullet : BulletBase
                 hitPoint = unit.gameObject.GetComponent<Collider>().bounds.center;
                 if (unit.UnitModel == target)
                 {
-                    hitPromise.Resolve(unit.UnitModel);
+                    hitPromise.Resolve(unit);
                 }
             }
 

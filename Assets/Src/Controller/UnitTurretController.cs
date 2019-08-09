@@ -23,11 +23,13 @@ public class UnitTurretController : IInitializable, ILateTickable
     [Inject]
     private UnitModel _model;
     [Inject]
+    private UnitFacade _facade;
+    [Inject]
     private ITurretAnimationAdapter _turretAnimationAdapter;
 
 
     private Settings _settings;
-    private UnitModel _target => _model.attackTarget;
+    private UnitModel _target => _model.attackTarget?.UnitModel;
     private Quaternion _lastRotation;
 
     public UnitTurretController(Settings settings)
@@ -116,7 +118,7 @@ public class UnitTurretController : IInitializable, ILateTickable
 
     private void Fire(WeaponConfig weapon, Vector3 fireDirection)
     {
-        _bulletFactory.Create(_model, _model.attackTarget, weapon, fireDirection)
+        _bulletFactory.Create(_facade, _model.attackTarget, weapon, fireDirection)
                         .HitPromise
                         .Then(hitUnit => _model.isLastShotHitTarget = hitUnit == _model.attackTarget);
     }

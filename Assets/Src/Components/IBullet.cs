@@ -2,5 +2,5 @@
 
 public interface IBullet
 {
-    IPromise<UnitModel> HitPromise { get; }
+    IPromise<UnitFacade> HitPromise { get; }
 }

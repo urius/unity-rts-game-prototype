@@ -67,7 +67,7 @@ public class UnitAIMoveController : IInitializable, IDisposable
             var team = _model.teamId;
             
             //var enemiesExceptTarget = _unitsCollectionProvider.units.FindAll(u => (u.teamId != team) && (u != target));
-            var enemiesExceptTarget = UnitsCollectionProvider._units.FindAll(u => (u.teamId != team) && (u != target));
+            var enemiesExceptTarget = UnitsCollectionProvider._units.FindAll(u => (u.UnitModel.teamId != team) && (u.UnitModel != target));
             var extraEnemiesTargetedToMe = GetUnitsTargetedMe(enemiesExceptTarget);
             if (extraEnemiesTargetedToMe.Count > 0)
             {
@@ -94,31 +94,31 @@ public class UnitAIMoveController : IInitializable, IDisposable
         return moveToPosition;
     }
 
-    private UnitModel GetClosestEnemy(IEnumerable<UnitModel> unitsToIterate)
+    private UnitModel GetClosestEnemy(IEnumerable<UnitFacade> unitsToIterate)
     {
         UnitModel closest = null;
         foreach (var unit in unitsToIterate)
         {
-            if (_model.teamId != unit.teamId)
+            if (_model.teamId != unit.UnitModel.teamId)
             {
-                var distance = Vector3.Distance(_model.position, unit.position);
+                var distance = Vector3.Distance(_model.position, unit.UnitModel.position);
                 if (closest == null || distance < Vector3.Distance(_model.position, closest.position))
                 {
-                    closest = unit;
+                    closest = unit.UnitModel;
                 }
             }
         }
         return closest;
     }
 
-    private IList<UnitModel> GetUnitsTargetedMe(IEnumerable<UnitModel> unitsToIterate)
+    private IList<UnitModel> GetUnitsTargetedMe(IEnumerable<UnitFacade> unitsToIterate)
     {
         var result = new List<UnitModel>();
         foreach (var unit in unitsToIterate)
         {
-            if (unit.attackTarget == _model)
+            if (unit.UnitModel.attackTarget?.UnitModel == _model)
             {
-                result.Add(unit);
+                result.Add(unit.UnitModel);
             }
         }
 

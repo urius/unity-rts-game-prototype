@@ -23,7 +23,7 @@ public class UnitModel
 
     public bool isAttacking = false;
     public bool isLastShotHitTarget = false;
-    public UnitModel attackTarget = null;
+    public UnitFacade attackTarget = null;
     private Vector3 _destinationPoint;
     private bool _isSelected;
 

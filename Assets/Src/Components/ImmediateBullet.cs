@@ -30,7 +30,7 @@ public class ImmediateBullet : BulletBase
                 hitPoint = unit.gameObject.GetComponent<Collider>().bounds.center;
                 if (unit.UnitModel == target)
                 {
-                    hitPromise.Resolve(unit.UnitModel);
+                    hitPromise.Resolve(unit);
                 }
             }
 

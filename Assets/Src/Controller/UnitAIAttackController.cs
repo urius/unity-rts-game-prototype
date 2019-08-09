@@ -35,17 +35,17 @@ public class UnitAIAttackController : IInitializable, IDisposable
         }
     }
 
-    private UnitModel GetClosestAttackableEnemy(IEnumerable<UnitModel> unitsToIterate)
+    private UnitFacade GetClosestAttackableEnemy(IEnumerable<UnitFacade> unitsToIterate)
     {
-        UnitModel closest = null;
+        UnitFacade closest = null;
         foreach (var unit in unitsToIterate)
         {
-            if (_model.teamId != unit.teamId)
+            if (_model.teamId != unit.UnitModel.teamId)
             {
-                var distance = Vector3.Distance(_model.position, unit.position);
+                var distance = Vector3.Distance(_model.position, unit.UnitModel.position);
                 if (distance <= _model.detectRadius)
                 {
-                    if (closest == null || distance < Vector3.Distance(_model.position, closest.position))
+                    if (closest == null || distance < Vector3.Distance(_model.position, closest.UnitModel.position))
                     {
                         closest = unit;
                     }
