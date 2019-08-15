@@ -16,7 +16,7 @@ MonoBehaviour:
     mobileUnits:
     - typeId: 1
       cost: 500
-      buildTimeSeconds: 5
+      buildTimeSeconds: 1
       prefab: {fileID: 1003504808538462, guid: 23037ac2bd4049c4f98e969f83a64c42, type: 3}
       hp: 500
       detectRadius: 80

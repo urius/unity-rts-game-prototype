@@ -19,11 +19,10 @@ public class UnitNavMeshMoveController : IInitializable, ITickable, IDisposable
 
     public void Initialize()
     {
-
-        MoveToPosition(_model.destinationPoint);
-
         _model.DestinationChanged += OnDestinationChanged;
         _model.UnitDestroyed += OnUnitDestroyed;
+        
+        _model.isActivePromise.Then(() => MoveToPosition(_model.destinationPoint));
     }
 
     private void OnUnitDestroyed()

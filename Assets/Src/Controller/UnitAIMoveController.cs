@@ -15,8 +15,14 @@ public class UnitAIMoveController : IInitializable, IDisposable
 
     public void Initialize()
     {
-        _coroutinesManager.StartCoroutine(ChooseTargetToMoveCoroutine());
         _model.UnitDestroyed += OnUnitDestroyed;
+
+        _model.isActivePromise.Then(StartCoroutines);
+    }
+
+    private void StartCoroutines()
+    {
+        _coroutinesManager.StartCoroutine(ChooseTargetToMoveCoroutine());
     }
 
     private void OnUnitDestroyed()
@@ -29,7 +35,6 @@ public class UnitAIMoveController : IInitializable, IDisposable
     {
         while (true)
         {
-            //var target = GetClosestEnemy(_unitsCollectionProvider.units);
             var target = GetClosestEnemy(UnitsCollectionProvider._units);
             _model.destinationPoint = GetDestinationPoint(target);
 

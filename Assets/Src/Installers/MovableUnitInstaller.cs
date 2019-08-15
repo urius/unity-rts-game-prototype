@@ -29,7 +29,7 @@ public class MovableUnitInstaller : UnitInstallerBase
         Container.BindInterfacesAndSelfTo<UnitTurretController>().AsSingle().WithArguments(_turretSettings).NonLazy();
 
 
-        if (team == _gameData.UserTeam)
+        if (parameters.teamId == _gameData.UserTeam)
         {
             Container.BindInterfacesAndSelfTo<UnitMoveByUserController>().AsSingle().NonLazy();
         }
@@ -46,6 +46,6 @@ public class MovableUnitInstaller : UnitInstallerBase
     protected override UnitModel CreateUnitModel()
     {
         var config = _unitsConfig.GetConfigByType(_unitType);
-        return new UnitModel(team, config.hp, config.cost, config.detectRadius);
+        return new UnitModel(parameters.teamId, config.hp, config.cost, config.detectRadius);
     }
 }

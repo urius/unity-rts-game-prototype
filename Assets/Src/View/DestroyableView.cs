@@ -14,7 +14,7 @@ public class DestroyableView : MonoBehaviour
     private string _destroyAnimationName;
     
 
-    public void Start()
+    public void Awake()
     {
         _model.UnitDestroyed += OnUnitDestroyed;
     }

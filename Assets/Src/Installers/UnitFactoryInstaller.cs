@@ -8,6 +8,8 @@ public class UnitFactoryInstaller : UnitInstallerBase
     private int _cost;
     [SerializeField]
     private UnitFactoryController.Settings _unitFactoryControllerSettings;
+
+
     protected override void InstallExtraBindings()
     {
         Container.BindInstance(gameObject.GetComponent<Animator>());
@@ -19,6 +21,6 @@ public class UnitFactoryInstaller : UnitInstallerBase
 
     protected override UnitModel CreateUnitModel()
     {
-        return new UnitModel(team, _hp, _cost, 0);
+        return new UnitModel(parameters.teamId, _hp, _cost, 0);
     }
 }

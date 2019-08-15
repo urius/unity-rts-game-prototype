@@ -14,7 +14,8 @@ public class UnitDisplayHpController : IInitializable, IDisposable
     public void Initialize()
     {
         _model.HealthUpdated += OnHpUpdated;
-        UpdateHp(_model.hp);
+        
+        _model.isActivePromise.Then(() => UpdateHp(_model.hp));
     }
 
     private void OnHpUpdated(int hp)
