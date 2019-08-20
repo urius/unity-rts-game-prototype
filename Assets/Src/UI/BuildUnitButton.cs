@@ -19,7 +19,7 @@ public class BuildUnitButton : MonoBehaviour
     private Text _costText;
     private Text _queueText;
 
-    void Awake()
+    private void Awake()
     {
         _button = GetComponent<Button>();
         _progressImage = transform.Find("Progress").GetComponent<Image>();
@@ -27,15 +27,24 @@ public class BuildUnitButton : MonoBehaviour
         _queueText = transform.Find("QueueTxt").GetComponent<Text>();
     }
 
-    void Start()
+    private void Start()
     {
-        _button.onClick.AddListener(OnClick);
-        _factoryFacade.FactoryModel.BuildProgressUpdated += OnBuildProgressUpdated;
-
         _progressImage.fillAmount = 0;
         _queueText.text = string.Empty;
 
         _costText.text = _unitsConfig.GetConfigByType(_buildableUnitType).cost + "$";
+    }
+
+    private void OnEnable()
+    {
+        _button.onClick.AddListener(OnClick);
+        _factoryFacade.FactoryModel.BuildProgressUpdated += OnBuildProgressUpdated;
+    }
+
+    private void OnDisable()
+    {
+        _button.onClick.RemoveListener(OnClick);
+        _factoryFacade.FactoryModel.BuildProgressUpdated -= OnBuildProgressUpdated;
     }
 
     private void OnBuildProgressUpdated(MobileUnitType typeId, float progress)
@@ -66,10 +75,5 @@ public class BuildUnitButton : MonoBehaviour
         _factoryFacade.TryBuildUnit(_buildableUnitType);
 
         ShowUnitsInQueueCount();
-    }
-
-    private void Stop()
-    {
-        _factoryFacade.FactoryModel.BuildProgressUpdated -= OnBuildProgressUpdated;
     }
 }

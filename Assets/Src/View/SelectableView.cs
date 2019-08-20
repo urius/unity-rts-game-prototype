@@ -9,7 +9,7 @@ public class SelectableView : MonoBehaviour
 
     [Inject]
     private UnitModel _model;
-    
+
 
     [SerializeField]
     private bool _isSelected = false;
@@ -20,14 +20,13 @@ public class SelectableView : MonoBehaviour
     [SerializeField]
     private Collider _selectionArea;
 
-    [Inject]
-    public void Construct()
+    private void OnEnable()
     {
         _selection.SetActive(_isSelected);
+
         _model.SelectionChanged += OnSelectionChanged;
         _model.UnitDestroyed += OnUnitDestroyed;
     }
-    
 
     void OnMouseDown()
     {
@@ -56,10 +55,11 @@ public class SelectableView : MonoBehaviour
         _isSelected = isSelected;
         _selection.SetActive(isSelected);
     }
-    
-    private void Stop()
+
+    private void OnDisable()
     {
         _selection.SetActive(false);
+        
         _model.SelectionChanged -= OnSelectionChanged;
         _model.UnitDestroyed -= OnUnitDestroyed;
     }

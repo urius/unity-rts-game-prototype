@@ -42,14 +42,16 @@ public class MovableView : MonoBehaviour
     private NavMeshAgent _navMeshAgent;
     private MoveStates _currentState = MoveStates.Undefined;
 
-    [Inject]
-    public void Construct()
+    private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
 
         _lastPosition = transform.position;
         _lastRotation = transform.rotation;
+    }
 
+    private void OnEnable()
+    {
         _model.UnitDestroyed += OnUnitDestroyed;
     }
 
@@ -68,7 +70,7 @@ public class MovableView : MonoBehaviour
         enabled = false;
     }
 
-    private void Stop()
+    private void OnDisable()
     {
         _model.UnitDestroyed -= OnUnitDestroyed;
     }
