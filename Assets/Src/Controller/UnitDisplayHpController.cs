@@ -13,9 +13,14 @@ public class UnitDisplayHpController : IInitializable, IDisposable
     private CoroutinesManager _coroutimeManager;
     public void Initialize()
     {
+        _model.isActivePromise.Then(OnViewActivated);
+    }
+
+    private void OnViewActivated()
+    {
+        UpdateHp(_model.hp);
+
         _model.HealthUpdated += OnHpUpdated;
-        
-        _model.isActivePromise.Then(() => UpdateHp(_model.hp));
     }
 
     private void OnHpUpdated(int hp)

@@ -12,7 +12,7 @@ public abstract class UnitInstallerBase : MonoInstaller
     public override void Start()
     {
         base.Start();
-        
+
         _model.Activate();
     }
 
@@ -32,12 +32,11 @@ public abstract class UnitInstallerBase : MonoInstaller
         Container.BindInstance<Transform>(transform).AsSingle();
         Container.BindInstance<GameObject>(transform.gameObject).AsSingle();
 
-        Container.BindInterfacesAndSelfTo<UnitMainController>().AsSingle().NonLazy();
-        Container.BindInterfacesAndSelfTo<UnitDisplayHpController>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<UnitMainController>().AsSingle();
+        Container.BindInterfacesAndSelfTo<UnitDisplayHpController>().AsSingle();
 
         var hpBar = transform.GetComponentInChildren<StripeBar>();
         Container.BindInstance(hpBar).WhenInjectedInto<UnitDisplayHpController>();
-
 
         InstallExtraBindings();
 
