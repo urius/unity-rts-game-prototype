@@ -21,13 +21,11 @@ public class UnitNavMeshMoveController : IInitializable, ITickable, IDisposable
 
     public void Initialize()
     {
-        _view.OnStart += OnViewStarted;
+        _view.OnStartPromise.Then(OnViewStarted);
     }
 
     private void OnViewStarted()
     {
-        _view.OnStart -= OnViewStarted;
-
         _model.DestinationChanged += OnDestinationChanged;
         _model.UnitDestroyed += OnUnitDestroyed;
 
@@ -47,7 +45,6 @@ public class UnitNavMeshMoveController : IInitializable, ITickable, IDisposable
 
     private void Deactivate()
     {
-        _view.OnStart -= OnViewStarted;
         _model.DestinationChanged -= OnDestinationChanged;
         _model.UnitDestroyed -= OnUnitDestroyed;
     }

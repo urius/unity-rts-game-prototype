@@ -1,4 +1,5 @@
 ﻿using System;
+using RSG;
 using UnityEngine;
 
 public class AwakableView : MonoBehaviour
@@ -8,7 +9,9 @@ public class AwakableView : MonoBehaviour
     public Action OnStart = delegate { };
     public Action OnDisabled = delegate { };
 
-    
+    public Promise OnStartPromise = new Promise();
+
+
     void Awake()
     {
         OnAwake();
@@ -21,6 +24,7 @@ public class AwakableView : MonoBehaviour
     void Start()
     {
         OnStart();
+        OnStartPromise.Resolve();
     }
     void OnDisable()
     {

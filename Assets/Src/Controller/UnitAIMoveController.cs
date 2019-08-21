@@ -17,13 +17,11 @@ public class UnitAIMoveController : IInitializable, IDisposable
 
     public void Initialize()
     {
-        _view.OnStart += OnViewStarted;
+        _view.OnStartPromise.Then(OnViewStarted);
     }
 
     private void OnViewStarted()
     {
-        _view.OnStart -= OnViewStarted;
-
         _model.UnitDestroyed += OnUnitDestroyed;
 
         _coroutinesManager.StartCoroutine(ChooseTargetToMoveCoroutine());
@@ -75,7 +73,7 @@ public class UnitAIMoveController : IInitializable, IDisposable
             }
 
             var team = _model.teamId;
-            
+
             //var enemiesExceptTarget = _unitsCollectionProvider.units.FindAll(u => (u.teamId != team) && (u != target));
             var enemiesExceptTarget = UnitsCollectionProvider._units.FindAll(u => (u.UnitModel.teamId != team) && (u.UnitModel != target));
             var extraEnemiesTargetedToMe = GetUnitsTargetedMe(enemiesExceptTarget);
@@ -136,7 +134,6 @@ public class UnitAIMoveController : IInitializable, IDisposable
     }
     public void Dispose()
     {
-        _view.OnStart -= OnViewStarted;
         _model.UnitDestroyed -= OnUnitDestroyed;
 
         _coroutinesManager?.StopAllComponentCoroutines();

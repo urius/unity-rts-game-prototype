@@ -16,14 +16,13 @@ public class UnitDisplayHpController : IInitializable, IDisposable
 
     public void Initialize()
     {
-        _view.OnStart += OnViewStarted;
+        _view.OnStartPromise.Then(OnViewStarted);
     }
 
     private void OnViewStarted()
     {
         UpdateHp(_model.hp);
 
-        _view.OnStart -= OnViewStarted;
         _model.HealthUpdated += OnHpUpdated;
     }
 
@@ -52,7 +51,6 @@ public class UnitDisplayHpController : IInitializable, IDisposable
 
     public void Dispose()
     {
-        _view.OnStart -= OnViewStarted;
         _model.HealthUpdated -= OnHpUpdated;
     }
 }
