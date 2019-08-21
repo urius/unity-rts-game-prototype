@@ -11,15 +11,19 @@ public class UnitDisplayHpController : IInitializable, IDisposable
     private StripeBar _hpBar;
     [Inject]
     private CoroutinesManager _coroutimeManager;
+    [Inject]
+    private AwakableView _view;
+
     public void Initialize()
     {
-        _model.isActivePromise.Then(OnViewActivated);
+        _view.OnStart += OnViewStarted;
     }
 
-    private void OnViewActivated()
+    private void OnViewStarted()
     {
         UpdateHp(_model.hp);
 
+        _view.OnStart -= OnViewStarted;
         _model.HealthUpdated += OnHpUpdated;
     }
 
@@ -48,6 +52,7 @@ public class UnitDisplayHpController : IInitializable, IDisposable
 
     public void Dispose()
     {
+        _view.OnStart -= OnViewStarted;
         _model.HealthUpdated -= OnHpUpdated;
     }
 }

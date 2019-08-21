@@ -9,6 +9,8 @@ public class UnitNavMeshMoveController : IInitializable, ITickable, IDisposable
     private UnitModel _model;
     [Inject]
     private NavMeshAgent _agent;
+    [Inject]
+    private AwakableView _view;
 
     private Settings _settings;
 
@@ -19,11 +21,13 @@ public class UnitNavMeshMoveController : IInitializable, ITickable, IDisposable
 
     public void Initialize()
     {
-        _model.isActivePromise.Then(OnViewActivated);
+        _view.OnStart += OnViewStarted;
     }
 
-    private void OnViewActivated()
+    private void OnViewStarted()
     {
+        _view.OnStart -= OnViewStarted;
+
         _model.DestinationChanged += OnDestinationChanged;
         _model.UnitDestroyed += OnUnitDestroyed;
 
@@ -43,6 +47,7 @@ public class UnitNavMeshMoveController : IInitializable, ITickable, IDisposable
 
     private void Deactivate()
     {
+        _view.OnStart -= OnViewStarted;
         _model.DestinationChanged -= OnDestinationChanged;
         _model.UnitDestroyed -= OnUnitDestroyed;
     }

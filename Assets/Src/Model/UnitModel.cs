@@ -21,7 +21,6 @@ public class UnitModel
     public readonly int cost;
     public readonly int maxHp;
     public readonly int detectRadius;
-    public readonly Promise isActivePromise;
 
     public bool isAttacking = false;
     public bool isLastShotHitTarget = false;
@@ -40,8 +39,6 @@ public class UnitModel
         this.detectRadius = detectRadius;
 
         _isSelected = false;
-
-        isActivePromise = new Promise();
     }
 
     public Vector3 position => _transform.position;
@@ -82,10 +79,5 @@ public class UnitModel
         {
             UnitDestroyed();
         }
-    }
-
-    public void Activate()
-    {
-        isActivePromise.Resolve();
     }
 }

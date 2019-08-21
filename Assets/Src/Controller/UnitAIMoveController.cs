@@ -12,14 +12,18 @@ public class UnitAIMoveController : IInitializable, IDisposable
     private UnitsCollectionProvider _unitsCollectionProvider;
     [Inject]
     private UnitModel _model;
+    [Inject]
+    private AwakableView _view;
 
     public void Initialize()
     {
-        _model.isActivePromise.Then(OnViewActivated);
+        _view.OnStart += OnViewStarted;
     }
 
-    private void OnViewActivated()
+    private void OnViewStarted()
     {
+        _view.OnStart -= OnViewStarted;
+
         _model.UnitDestroyed += OnUnitDestroyed;
 
         _coroutinesManager.StartCoroutine(ChooseTargetToMoveCoroutine());
@@ -132,8 +136,9 @@ public class UnitAIMoveController : IInitializable, IDisposable
     }
     public void Dispose()
     {
+        _view.OnStart -= OnViewStarted;
         _model.UnitDestroyed -= OnUnitDestroyed;
-        
+
         _coroutinesManager?.StopAllComponentCoroutines();
     }
 }

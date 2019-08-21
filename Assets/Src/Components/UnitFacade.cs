@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using Zenject;
+﻿using Zenject;
 
-public class UnitFacade : MonoBehaviour
+public class UnitFacade : AwakableView
 {
     [Inject]
     protected UnitModel model;

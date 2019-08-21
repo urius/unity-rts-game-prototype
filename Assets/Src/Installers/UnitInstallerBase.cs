@@ -9,13 +9,6 @@ public abstract class UnitInstallerBase : MonoInstaller
 
     private UnitModel _model;
 
-    public override void Start()
-    {
-        base.Start();
-
-        _model.Activate();
-    }
-
     public override void InstallBindings()
     {
         var injectedParameters = Container.TryResolve<Parameters>();
@@ -25,6 +18,7 @@ public abstract class UnitInstallerBase : MonoInstaller
         }
 
         Container.BindInstance<UnitFacade>(transform.GetComponent<UnitFacade>()).AsSingle();
+        Container.BindInstance<AwakableView>(transform.GetComponent<UnitFacade>()).AsSingle();
 
         _model = CreateUnitModel();
         Container.BindInstance<UnitModel>(_model).AsSingle();
